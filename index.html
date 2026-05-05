@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoeVida — Doe Sangue, Viva com Recompensas</title>
+    <title>DoeVida — Doe Sangue, Mobilize Pessoas</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -22,7 +22,7 @@
         <!-- Points badge (shown after login) -->
         <div class="pts-badge" id="ptsBadge">
             <div class="pts-coin">🥇</div>
-            <span class="pts-val" id="ptsVal">300</span>
+            <span class="pts-val" id="ptsVal">0</span>
             <span style="font-size:.78rem;color:#92400e;">pts</span>
         </div>
 
@@ -43,13 +43,13 @@
     <!-- ════════ TABS ════════ -->
     <div class="tabs-wrap">
         <nav class="tabs-nav" id="tabsNav">
-            <button class="tab-btn active" data-tab="home"> <span class="tab-icon">🏠</span> Início</button>
-            <button class="tab-btn" data-tab="feed"> <span class="tab-icon">📣</span> Campanhas de Doação</button>
-            <button class="tab-btn" data-tab="wallet"> <span class="tab-icon">💳</span> Carteira</button>
-            <button class="tab-btn" data-tab="points"> <span class="tab-icon">🏅</span> Pontos</button>
-            <button class="tab-btn" data-tab="map"> <span class="tab-icon">📍</span> Mapa</button>
-            <button class="tab-btn" data-tab="rules"> <span class="tab-icon">📋</span> Regras</button>
-            <button class="tab-btn" data-tab="campaigns"><span class="tab-icon">📣</span> Campanhas</button>
+            <button class="tab-btn active" data-tab="home"> <span class="tab-icon"></span> Início</button>
+            <button class="tab-btn" data-tab="feed"> <span class="tab-icon"></span> Campanhas de Doação</button>
+            <button class="tab-btn" data-tab="wallet"> <span class="tab-icon"></span> Carteira</button>
+            <button class="tab-btn" data-tab="points"> <span class="tab-icon"></span> Pontos</button>
+            <button class="tab-btn" data-tab="map"> <span class="tab-icon"></span> Mapa</button>
+            <button class="tab-btn" data-tab="rules"> <span class="tab-icon"></span> Orientações</button>
+            <button class="tab-btn" data-tab="campaigns"><span class="tab-icon"></span> Campanhas</button>
         </nav>
     </div>
 
@@ -64,17 +64,16 @@
                 <div class="wrap">
                     <div class="hero-inner">
                         <div>
-                            <div class="hero-pill">🩸 Recife doa, Recife vive</div>
+                            <div class="hero-pill">🩸Recife doa, Recife vive</div>
                             <h1 class="hero-h1">
-                                Doe <span class="em-red">Sangue.</span><br>
-                                Ganhe <span class="em-green">Recompensas.</span><br>
+                                Mobilize <span class="em-red">Campanhas.</span><br>
+                                Alcance <span class="em-green">Pessoas.</span><br>
                                 Salve Vidas.
                             </h1>
-                            <p class="hero-lead">A primeira plataforma de doação de sangue com gamificação real do
-                                Nordeste. Cada doação vira pontos, cada ponto vira desconto em farmácias parceiras de
-                                Recife.</p>
+                            <p class="hero-lead">A plataforma que conecta campanhas de doação a pessoas com maior chance
+                                de se engajar. Divulgue campanhas, gere mobilização qualificada e acompanhe seu impacto.</p>
                             <div class="hero-btns">
-                                <button class="btn btn-green btn-lg" onclick="openModal('registerModal')">🩸 Começar a
+                                <button class="btn btn-green btn-lg" onclick="openModal('registerModal')">🩸Começar a
                                     Doar</button>
                                 <button class="btn btn-outline btn-lg" onclick="switchTab('rules')">Ver
                                     requisitos</button>
@@ -82,7 +81,7 @@
                             <div class="hero-stats">
                                 <div>
                                     <div class="hstat-n">4.200+</div>
-                                    <div class="hstat-l">Doadores ativos</div>
+                                    <div class="hstat-l">Pessoas mobilizadas</div>
                                 </div>
                                 <div>
                                     <div class="hstat-n">12mil</div>
@@ -108,8 +107,8 @@
                             <div class="float-tag ft-1">
                                 <span class="ft-icon">🏅</span>
                                 <div>
-                                    <div class="ft-v">+300 pts</div>
-                                    <div class="ft-l">bônus de cadastro</div>
+                                    <div class="ft-v">Link único</div>
+                                    <div class="ft-l">mobilização rastreada</div>
                                 </div>
                             </div>
                             <div class="float-tag ft-2">
@@ -129,33 +128,33 @@
                     <div style="text-align:center;margin-bottom:44px;">
                         <div class="chip">✦ Simples assim</div>
                         <h2 class="sec-title" style="text-align:center;">Como funciona o DoeVida</h2>
-                        <p class="sec-sub" style="margin:0 auto;text-align:center;">Do cadastro à recompensa em 4 passos
+                        <p class="sec-sub" style="margin:0 auto;text-align:center;">Da campanha à mobilização em 4 passos
                             simples.</p>
                     </div>
                     <div class="grid-4">
                         <div class="step-card">
                             <div class="step-n">1</div>
                             <div class="step-icon">📋</div>
-                            <h3>Cadastre-se</h3>
-                            <p>Crie sua conta e ganhe <strong>300 pontos</strong> de bônus imediatamente.</p>
+                            <h3 style="font-size: 25px;">Cadastre-se</h3>
+                            <p>Crie sua conta para acompanhar campanhas e participar da mobilização.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">2</div>
                             <div class="step-icon">📍</div>
-                            <h3>Localize um posto</h3>
-                            <p>Use o mapa para encontrar o Hemope, Ihene ou hospital mais próximo.</p>
+                            <h3 style="font-size: 25px;">Encontre campanhas</h3>
+                            <p>Veja campanhas próximas, urgentes ou compatíveis com seu contexto.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">3</div>
                             <div class="step-icon">🩸</div>
-                            <h3>Doe sangue</h3>
-                            <p>Realize a doação e confirme na plataforma. Vale <strong>+100 pontos</strong>.</p>
+                            <h3 style="font-size: 25px;">Divulgue para as pessoas certas</h3>
+                            <p>Compartilhe campanhas com grupos, comunidades e pessoas que possam se interessar em ajudar.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">4</div>
                             <div class="step-icon">🎁</div>
-                            <h3>Resgate descontos</h3>
-                            <p>Troque seus pontos por vouchers de 5%, 7% e 10% em farmácias.</p>
+                            <h3 style="font-size: 25px;">Use seus pontos</h3>
+                            <p>Troque pontos de mobilização por benefícios oferecidos por parceiros.</p>
                         </div>
                     </div>
                 </div>
@@ -182,24 +181,24 @@
                     </div>
                     <div class="feed-aside">
                         <div class="aside-card" id="ptsCard" style="display:none;">
-                            <h3>🏅 Seus Pontos</h3>
+                            <h3>Seus Pontos de Mobilização</h3>
                             <div class="pts-display">
                                 <div class="medal">🥇</div>
-                                <div class="big" id="sidebarPts">300</div>
-                                <div class="lbl">pontos acumulados</div>
+                                <div class="big" id="sidebarPts">0</div>
+                                <div class="lbl">pontos de mobilização</div>
                             </div>
                             <div class="prog-wrap">
-                                <div class="prog-labels"><span>Nível Bronze</span><span id="progLbl">300/700</span>
+                                <div class="prog-labels"><span>Próximo benefício</span><span id="progLbl">0/300</span>
                                 </div>
                                 <div class="prog-bar">
-                                    <div class="prog-fill" id="progFill" style="width:42%"></div>
+                                    <div class="prog-fill" id="progFill" style="width:0%"></div>
                                 </div>
                             </div>
                             <button class="btn btn-green btn-block" style="margin-top:12px;"
-                                onclick="switchTab('points')">🎟️ Ver recompensas</button>
+                                onclick="switchTab('points')">Ver benefícios</button>
                         </div>
                         <div class="aside-card">
-                            <h3>🏆 Top Doadores</h3>
+                            <h3>Mobilizadores em destaque</h3>
                             <ul class="lb-list">
                                 <li class="lb-item">
                                     <div class="lb-pos">🥇</div>
@@ -272,8 +271,8 @@
                             <div class="wallet-email" id="wEmail">email@exemplo.com</div>
                             <div class="wallet-stats-row">
                                 <div class="wst">
-                                    <div class="n" id="wPts">300</div>
-                                    <div class="l">pontos</div>
+                                    <div class="n" id="wPts">0</div>
+                                    <div class="l">pontos de mobilização</div>
                                 </div>
                                 <div class="wst">
                                     <div class="n" id="wDoas">0</div>
@@ -281,7 +280,7 @@
                                 </div>
                                 <div class="wst">
                                     <div class="n" id="wNivel">Bronze</div>
-                                    <div class="l">nível</div>
+                                    <div class="l">benefício</div>
                                 </div>
                             </div>
                         </div>
@@ -309,84 +308,77 @@
         <div class="tab-panel" id="tab-points">
             <div class="wrap">
                 <div class="points-wrap">
-                    <div class="chip">🏅 Gamificação</div>
-                    <h2 class="sec-title">Pontos & Recompensas</h2>
-                    <p class="sec-sub" style="margin-bottom:40px;">Doe mais, ganhe mais. Cada ação vale pontos reais.
-                    </p>
+                    <div class="chip">Mobilização qualificada</div>
+                    <h2 class="sec-title">Pontos de Mobilização</h2>
+                    <p class="sec-sub" style="margin-bottom:40px;">Ganhe pontos ao ajudar campanhas de doação a chegarem
+                        às pessoas certas. Os pontos reconhecem a efetividade da divulgação, não a doação de sangue.</p>
+
+                    <h3 class="vouchers-title">Como acumular pontos</h3>
+                    <p class="vouchers-sub">A pontuação considera a qualidade da mobilização gerada pela divulgação das
+                        campanhas, sem revelar fórmula interna ou depender da doação de sangue.</p>
 
                     <div class="pts-earn-grid">
                         <div class="pts-earn-card">
-                            <div class="icon">🎉</div>
-                            <div class="pval">+300</div>
-                            <div class="plbl">Cadastro na plataforma</div>
+                            <div class="plbl">Divulgue campanhas</div>
+                            <p class="pts-card-desc">Compartilhe campanhas com pessoas, grupos e comunidades que possam
+                                ter real interesse em ajudar.</p>
                         </div>
                         <div class="pts-earn-card">
-                            <div class="icon">🩸</div>
-                            <div class="pval">+100</div>
-                            <div class="plbl">Cada doação confirmada</div>
+                            <div class="plbl">Gere alcance relevante</div>
+                            <p class="pts-card-desc">A plataforma valoriza divulgações que chegam a pessoas compatíveis
+                                com a necessidade, localização e contexto da campanha.</p>
                         </div>
                         <div class="pts-earn-card">
-                            <div class="icon">📢</div>
-                            <div class="pval">+50</div>
-                            <div class="plbl">Compartilhar campanha</div>
-                        </div>
-                        <div class="pts-earn-card">
-                            <div class="icon">💬</div>
-                            <div class="pval">+10</div>
-                            <div class="plbl">Sinalizar interesse</div>
+                            <div class="plbl">Mobilize com qualidade</div>
+                            <p class="pts-card-desc">O reconhecimento considera sinais reais de interesse, evitando que a
+                                pontuação dependa apenas de acessos superficiais.</p>
                         </div>
                     </div>
 
-                    <h3 class="vouchers-title">Seus Vouchers de Desconto</h3>
-                    <p class="vouchers-sub">Troque seus pontos por descontos reais em farmácias parceiras de Recife e
-                        Grande Recife.</p>
+                    <h3 class="vouchers-title">Use seus pontos</h3>
+                    <p class="vouchers-sub">Troque seus pontos de mobilização por benefícios oferecidos por parceiros da
+                        plataforma.</p>
 
                     <div class="voucher-grid">
                         <div class="voucher">
                             <div class="v-top v-bronze">
-                                <div class="v-badge">DISPONÍVEL</div>
+                                <div class="v-badge">BRONZE</div>
                                 <div class="v-pct">5<span>%</span></div>
-                                <div class="v-off">de desconto em farmácias</div>
+                                <div class="v-off">benefício parceiro</div>
                             </div>
                             <div class="v-body">
-                                <h4>Voucher Bronze</h4>
-                                <p>Válido em toda a rede de farmácias parceiras DoeVida em Recife e Grande Recife.</p>
-                                <div class="v-req">⭐ Requer 300 pts</div>
-                                <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA5-PE')">DOEVIDA5-PE &nbsp;📋</div>
+                                <h4>Benefício Bronze</h4>
+                                <p>Use seus pontos de mobilização para acessar descontos iniciais em parceiros da plataforma.</p>
+                                <div class="v-req">Requer 300 pontos de mobilização</div>
                             </div>
                         </div>
                         <div class="voucher">
                             <div class="v-top v-silver">
-                                <div class="v-badge">POPULAR</div>
+                                <div class="v-badge">PRATA</div>
                                 <div class="v-pct">7<span>%</span></div>
-                                <div class="v-off">de desconto em farmácias</div>
+                                <div class="v-off">benefício parceiro</div>
                             </div>
                             <div class="v-body">
-                                <h4>Voucher Prata</h4>
-                                <p>Para doadores frequentes. Válido por 30 dias após resgate em farmácias parceiras.</p>
-                                <div class="v-req">⭐ Requer 700 pts</div>
-                                <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA7-PRATA')">DOEVIDA7-PRATA &nbsp;📋
-                                </div>
+                                <h4>Benefício Prata</h4>
+                                <p>Benefício para usuários que ajudam campanhas a alcançar mais pessoas interessadas.</p>
+                                <div class="v-req">Requer 700 pontos de mobilização</div>
                             </div>
                         </div>
                         <div class="voucher">
                             <div class="v-top v-gold">
-                                <div class="v-badge">EXCLUSIVO</div>
+                                <div class="v-badge">OURO</div>
                                 <div class="v-pct">10<span>%</span></div>
-                                <div class="v-off">de desconto em farmácias</div>
+                                <div class="v-off">benefício parceiro</div>
                             </div>
                             <div class="v-body">
-                                <h4>Voucher Ouro</h4>
-                                <p>Para os maiores heróis. Desconto máximo em toda a rede DoeVida de Recife.</p>
-                                <div class="v-req">⭐ Requer 1.500 pts</div>
-                                <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA10-OURO')">DOEVIDA10-OURO &nbsp;📋
-                                </div>
+                                <h4>Benefício Ouro</h4>
+                                <p>Benefício para usuários com maior impacto na divulgação qualificada de campanhas.</p>
+                                <div class="v-req">Requer 1.500 pontos de mobilização</div>
                             </div>
                         </div>
                     </div>
+                    <p class="points-notice">Importante: doar sangue não gera pontos. Os pontos são concedidos pela 
+                        mobilização qualificada gerada na divulgação das campanhas.</p>
                 </div>
             </div>
         </div>
@@ -611,7 +603,7 @@
                     <div class="camp-card">
                         <div class="camp-img" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🏢</div>
                         <div class="camp-body">
-                            <h4>Empresa Doadora</h4>
+                            <h4>Empresa Parceira</h4>
                             <p>Seu negócio pode patrocinar campanhas e ganhar visibilidade em toda nossa plataforma.
                                 Fale conosco.</p>
                         </div>
@@ -620,8 +612,8 @@
                         <div class="camp-img" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💊</div>
                         <div class="camp-body">
                             <h4>Farmácias Parceiras</h4>
-                            <p>Mais de 15 farmácias em Recife aceitam os vouchers DoeVida. Quer ser parceira? Entre em
-                                contato.</p>
+                            <p>Instituições parceiras podem informar métricas agregadas de campanha para fortalecer a
+                                transparência da mobilização. Quer ser parceira? Entre em contato.</p>
                         </div>
                     </div>
                     <div class="camp-card">
@@ -635,9 +627,9 @@
                     <div class="camp-card">
                         <div class="camp-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🌟</div>
                         <div class="camp-body">
-                            <h4>Embaixadores DoeVida</h4>
-                            <p>Doadores Ouro viram embaixadores da plataforma, com benefícios exclusivos e visibilidade
-                                na comunidade.</p>
+                            <h4>Mobilização com impacto</h4>
+                            <p>Usuários com maior impacto ajudam campanhas a alcançar comunidades relevantes e acompanham
+                                os resultados pela plataforma.</p>
                         </div>
                     </div>
                 </div>
@@ -673,8 +665,7 @@
             <div id="regFormWrap">
                 <div class="glass-logo">🩸 Doe<span class="drop">Vida</span></div>
                 <h2>Criar sua conta</h2>
-                <p class="sub">Cadastre-se e ganhe <strong style="color:var(--g600)">300 pontos</strong> de bônus
-                    instantaneamente.</p>
+                <p class="sub">Cadastre-se para acompanhar campanhas e participar da mobilização.</p>
 
                 <div class="form-2col">
                     <div class="form-group"><label class="form-label">Nome *</label><input class="form-input" id="rNome"
@@ -726,8 +717,7 @@
                         <option value="F">Feminino</option>
                     </select>
                 </div>
-                <button class="btn btn-green btn-lg btn-block" onclick="doRegister()">🎉 Criar conta & ganhar 300
-                    pts</button>
+                <button class="btn btn-green btn-lg btn-block" onclick="doRegister()">Criar conta</button>
                 <div class="modal-switch">Já tem conta? <a onclick="swapModal('registerModal','loginModal')">Entrar</a>
                 </div>
             </div>
@@ -735,9 +725,9 @@
                 <div class="success-anim">🎉</div>
                 <h2>Conta criada!</h2>
                 <p style="color:var(--gray5);margin:8px 0 4px;">Bem-vindo(a) à família DoeVida.</p>
-                <div class="bonus-tag">🏅 +300 pontos adicionados!</div>
-                <p style="font-size:.84rem;color:var(--gray4);margin-bottom:20px;">Seu saldo de pontos já está
-                    disponível na plataforma.</p>
+                <div class="bonus-tag">Conta criada com sucesso</div>
+                <p style="font-size:.84rem;color:var(--gray4);margin-bottom:20px;">Os pontos vêm da mobilização gerada
+                    por links de divulgação.</p>
                 <button class="btn btn-green btn-lg" onclick="closeModal('registerModal')">Ir para o feed 🚀</button>
             </div>
         </div>
@@ -843,7 +833,7 @@
         <div class="glass-card">
             <button class="glass-x" onclick="closeModal('donationModal')">✕</button>
             <h2>Registrar doação</h2>
-            <p class="sub">Confirme sua doação e ganhe <strong style="color:var(--g600)">+100 pontos</strong>.</p>
+            <p class="sub">Registre sua doação para acompanhar seu histórico pessoal.</p>
             <div class="form-group">
                 <label class="form-label">Posto de doação</label>
                 <select class="form-input" id="donaPosto">
@@ -860,8 +850,7 @@
                 <label class="form-label">Data da doação</label>
                 <input type="date" class="form-input" id="donaData" />
             </div>
-            <button class="btn btn-red btn-lg btn-block" onclick="registerDonation()">🩸 Confirmar doação (+100
-                pts)</button>
+            <button class="btn btn-red btn-lg btn-block" onclick="registerDonation()">Registrar doação</button>
         </div>
     </div>
 
@@ -874,13 +863,14 @@
             <div class="footer-grid">
                 <div>
                     <div class="flogo">Doe<span>Vida</span></div>
-                    <p>A plataforma que conecta doadores de sangue com recompensas reais em Recife e Pernambuco.</p>
+                    <p>A plataforma que conecta campanhas de doação de sangue a pessoas dispostas a mobilizar Recife e
+                        Pernambuco.</p>
                 </div>
                 <div>
                     <h4>Plataforma</h4>
                     <ul>
                         <li><a href="#">Como funciona</a></li>
-                        <li><a href="#">Recompensas</a></li>
+                        <li><a href="#">Reconhecimentos</a></li>
                         <li><a href="#">Mapa</a></li>
                         <li><a href="#">Comunidade</a></li>
                     </ul>

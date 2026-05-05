@@ -101,20 +101,20 @@ const state = window.DoeVidaState || {};
             const c = campaigns.find(x => x.id === id);
             c.interessados += 1;
             renderFeed();
-            addPts(10);
-            toast('🩸 Interesse registrado! +10 state.pts. A campanha apareceu como prioridade para você.');
+            toast('Interesse registrado. A campanha poderá aparecer como prioridade para você.');
         }
 
         function sharePost(id) {
             const c = campaigns.find(x => x.id === id);
-            if (state.user) addPts(50);
-            const msg = `Campanha DoeVida: ${c.titulo} | Sangue: ${c.blood} | Local: ${c.local}`;
+            const ref = state.user ? encodeURIComponent(state.user.email || state.user.nome || 'usuario') : 'visitante';
+            const link = `https://doevida.netlify.app/campanha?id=${c.id}&ref=${ref}`;
+            const msg = `Campanha DoeVida: ${c.titulo} | Sangue: ${c.blood} | Local: ${c.local} | Link: ${link}`;
             if (navigator.share) {
                 navigator.share({ title: c.titulo, text: msg }).catch(() => { });
             } else {
                 navigator.clipboard?.writeText(msg);
-                toast('📤 Resumo da campanha copiado para compartilhar.');
             }
+            toast('Link de divulgação gerado. Seu impacto será acompanhado conforme a campanha alcançar pessoas interessadas.');
         }
 
         /* ──────────────────────────────────────
@@ -141,7 +141,7 @@ const state = window.DoeVidaState || {};
             if (peso && peso < 50) { toast('⚠️ Peso mínimo para doação: 50kg', true); return; }
 
             state.user = { nome, sobre, email, cpf, nasc, peso, sexo, blood, initials: (nome[0] + (sobre?.[0] || '')).toUpperCase() };
-            state.pts = 300;
+            state.pts = 0;
 
             document.getElementById('regFormWrap').classList.add('hide');
             document.getElementById('regSuccess').classList.add('show');
@@ -155,7 +155,7 @@ const state = window.DoeVidaState || {};
             if (!email || !senha) { toast('⚠️ Preencha e-mail e senha', true); return; }
 
             state.user = { nome: email.split('@')[0], sobre: '', email, initials: email[0].toUpperCase() };
-            state.pts = 300;
+            state.pts = state.pts || 0;
             closeModal('loginModal');
             toast('🎉 Login realizado! Bem-vindo(a) de volta.');
             updateUI();
@@ -203,7 +203,7 @@ const state = window.DoeVidaState || {};
         }
 
         function updateProgress() {
-            const next = state.pts >= 1500 ? 1500 : state.pts >= 700 ? 1500 : 700;
+            const next = state.pts >= 1500 ? 1500 : state.pts >= 700 ? 1500 : 300;
             const pct = Math.min((state.pts / next) * 100, 100);
             const el = document.getElementById('progFill');
             const lb = document.getElementById('progLbl');
@@ -212,7 +212,7 @@ const state = window.DoeVidaState || {};
         }
 
         function updateWalletLevel() {
-            const n = state.pts >= 1500 ? 'Ouro' : state.pts >= 700 ? 'Prata' : 'Bronze';
+            const n = state.pts >= 1500 ? 'Ouro disponível' : state.pts >= 700 ? 'Prata disponível' : state.pts >= 300 ? 'Bronze disponível' : 'A desbloquear';
             const el = document.getElementById('wNivel');
             if (el) el.textContent = n;
         }
@@ -239,7 +239,7 @@ const state = window.DoeVidaState || {};
     <div class="wfield"><label>Tipo Sanguíneo</label><div class="val blood">${state.user.blood || '—'}</div></div>
     <div class="wfield"><label>Peso</label><div class="val">${state.user.peso ? state.user.peso + ' kg' : '—'}</div></div>
     <div class="wfield"><label>Sexo</label><div class="val">${state.user.sexo === 'M' ? 'Masculino' : state.user.sexo === 'F' ? 'Feminino' : '—'}</div></div>
-    <div class="wfield"><label>Nível</label><div class="val" style="color:var(--g600)">${state.pts >= 1500 ? 'Ouro' : state.pts >= 700 ? 'Prata' : 'Bronze'}</div></div>`;
+    <div class="wfield"><label>Benefício</label><div class="val" style="color:var(--g600)">${state.pts >= 1500 ? 'Ouro disponível' : state.pts >= 700 ? 'Prata disponível' : state.pts >= 300 ? 'Bronze disponível' : 'A desbloquear'}</div></div>`;
 
             updateDonaStatus();
         }
@@ -321,11 +321,10 @@ const state = window.DoeVidaState || {};
             }
 
             state.lastDona = data;
-            addPts(100);
             const wDoas = document.getElementById('wDoas');
             if (wDoas) wDoas.textContent = parseInt(wDoas.textContent || 0) + 1;
             closeModal('donationModal');
-            toast('🩸 Doação confirmada! +100 pontos!');
+            toast('Doação registrada no histórico pessoal.');
             updateDonaStatus();
         }
 
