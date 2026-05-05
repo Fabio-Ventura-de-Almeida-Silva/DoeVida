@@ -185,7 +185,7 @@
             font-weight: 700;
             color: white;
             font-size: .85rem;
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             box-shadow: 0 2px 8px rgba(0, 121, 107, .4);
             cursor: pointer;
             flex-shrink: 0;
@@ -536,7 +536,7 @@
         }
 
         .hstat-n {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 2rem;
             font-weight: 700;
             color: var(--g600);
@@ -588,7 +588,7 @@
         }
 
         .hero-card-h {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.35rem;
             margin-bottom: 6px;
         }
@@ -697,8 +697,8 @@
         }
 
         .step-card h3 {
-            font-family: var(--font-title);
-            font-size: 1.15rem;
+            font-family: var(--font-body);
+            font-size: 1.25rem;
             margin-bottom: 8px;
         }
 
@@ -968,7 +968,7 @@
         }
 
         .aside-card h3 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1rem;
             color: var(--dark);
             margin-bottom: 14px;
@@ -989,7 +989,7 @@
         }
 
         .pts-display .big {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 2.8rem;
             font-weight: 700;
             line-height: 1;
@@ -1156,7 +1156,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.8rem;
             font-weight: 700;
             color: white;
@@ -1166,7 +1166,7 @@
         }
 
         .wallet-name {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.6rem;
             color: white;
             font-weight: 700;
@@ -1195,7 +1195,7 @@
         }
 
         .wst .n {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.5rem;
             font-weight: 700;
             color: white;
@@ -1447,7 +1447,7 @@
         }
 
         .pts-earn-card .pval {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 2rem;
             font-weight: 700;
             color: var(--g600);
@@ -1462,7 +1462,7 @@
 
         /* Vouchers */
         .vouchers-title {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.9rem;
             margin-bottom: 6px;
         }
@@ -1537,7 +1537,7 @@
         }
 
         .v-pct {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 4rem;
             font-weight: 900;
             color: white;
@@ -1563,7 +1563,7 @@
         }
 
         .v-body h4 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.15rem;
             margin-bottom: 6px;
         }
