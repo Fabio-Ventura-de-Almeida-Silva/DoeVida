@@ -1,5 +1,5 @@
-import { campaigns } from './data/campaigns.js';
-import { state } from './state.js';
+const campaigns = window.DoeVidaCampaigns || [];
+const state = window.DoeVidaState || {};
 
 /* ──────────────────────────────────────
            STATE

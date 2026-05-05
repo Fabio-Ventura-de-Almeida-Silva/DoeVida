@@ -1,4 +1,4 @@
-export const campaigns = [
+window.DoeVidaCampaigns = [
             {
                 id: 1,
                 tipo: 'pessoal',

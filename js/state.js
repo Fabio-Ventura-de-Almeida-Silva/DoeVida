@@ -1,4 +1,4 @@
-export const state = {
+window.DoeVidaState = {
   user: null,
   pts: 0,
   lastDona: null,
