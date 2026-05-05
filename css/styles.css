@@ -2,14 +2,14 @@
    DESIGN TOKENS
 ═══════════════════════════════════════ */
         :root {
-            --g50: #e0f2f1;
-            --g100: #b2dfdb;
-            --g200: #80cbc4;
-            --g400: #26a69a;
-            --g600: #00796b;
-            --g800: #004d40;
-            --g900: #00251a;
-            --red: #e53935;
+            --g50: #F2D0D7; /*fundo*/
+            --g100: #F2D0D7;
+            --g200: #D91424;
+            --g400: #D91424;
+            --g600: #D91424; /*botoes*/
+            --g800: #D91424; /*nome doe vida*/
+            --g900: #BF1B28; /*rodape*/
+            --red: #D91424;
             --red-soft: #ffebee;
             --gold: #f59e0b;
             --gold-light: #fef3c7;
@@ -21,7 +21,7 @@
             --gray4: #9ca3af;
             --gray5: #6b7280;
             --gray6: #4b5563;
-            --dark: #111827;
+            --dark: #1f2711;
             --font-title: 'Cormorant Garamond', Georgia, serif;
             --font-body: 'DM Sans', system-ui, sans-serif;
             --r-sm: 12px;
@@ -71,13 +71,17 @@
    TOP BAR  (points badge + auth)
 ═══════════════════════════════════════ */
         .topbar {
+            .logo-img {
+            height: 55px;
+            object-fit: contain;
+        }
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 900;
             height: 62px;
-            background: rgba(255, 255, 255, .88);
+            background: rgba(255, 255, 255, .88); /*cor perfil*/
             backdrop-filter: blur(18px);
             -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid var(--gray2);
@@ -117,7 +121,7 @@
             border-radius: 50px;
             font-size: .82rem;
             font-weight: 700;
-            box-shadow: 0 3px 12px rgba(245, 158, 11, .45), inset 0 1px 0 rgba(255, 255, 255, .4);
+            box-shadow: 0 3px 12px rgba(230, 3, 3, 0.45), inset 0 1px 0 rgba(230, 3, 3, 0.45);
             border: 1.5px solid rgba(255, 255, 255, .6);
             cursor: default;
             user-select: none;
@@ -149,7 +153,7 @@
             align-items: center;
             justify-content: center;
             font-size: .9rem;
-            box-shadow: inset 0 1px 2px rgba(255, 255, 255, .5), 0 2px 4px rgba(0, 0, 0, .2);
+            box-shadow: inset 0 1px 2px rgba(230, 3, 3, 0.45), 0 2px 4px rgba(0, 0, 0, .2);
             flex-shrink: 0;
         }
 
@@ -183,10 +187,10 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: white;
+            color: rgb(255, 255, 255);
             font-size: .85rem;
             font-family: var(--font-title);
-            box-shadow: 0 2px 8px rgba(0, 121, 107, .4);
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.45);
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -213,12 +217,12 @@
         .btn-green {
             background: linear-gradient(135deg, var(--g600) 0%, var(--g400) 100%);
             color: white;
-            box-shadow: 0 4px 14px rgba(0, 121, 107, .38);
+            box-shadow: 0 4px 14px rgba(230, 3, 3, 0.45);
         }
 
         .btn-green:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(0, 121, 107, .45);
+            box-shadow: 0 7px 20px rgba(230, 3, 3, 0.45);
         }
 
         .btn-outline {
@@ -245,12 +249,12 @@
         .btn-red {
             background: linear-gradient(135deg, #e53935, #ef5350);
             color: white;
-            box-shadow: 0 4px 14px rgba(229, 57, 53, .35);
+            box-shadow: 0 4px 14px rgba(230, 3, 3, 0.45);
         }
 
         .btn-red:hover {
             transform: translateY(-2px);
-            box-shadow: 0 7px 20px rgba(229, 57, 53, .45);
+            box-shadow: 0 7px 20px rgba(230, 3, 3, 0.45);
         }
 
         .btn-gold {
@@ -1089,11 +1093,11 @@
 
             0%,
             100% {
-                box-shadow: 0 0 0 0 rgba(229, 57, 53, .18);
+                box-shadow: 0 0 0 0 rgba(230, 3, 3, 0.45);
             }
 
             50% {
-                box-shadow: 0 0 0 8px rgba(229, 57, 53, 0);
+                box-shadow: 0 0 0 8px rgba(230, 3, 3, 0.45);
             }
         }
 
@@ -1284,7 +1288,7 @@
         .form-input:focus {
             border-color: var(--g400);
             background: white;
-            box-shadow: 0 0 0 3px rgba(38, 166, 154, .12);
+            box-shadow: 0 0 0 3px rgba(230, 3, 3, 0.45);
         }
 
         .form-input.err {
