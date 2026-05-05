@@ -1,0 +1,23 @@
+/* Ajusta o container da logo */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Faz a div ocupar a altura da topbar */
+    padding: 5px 0;
+}
+
+/* Ajusta o tamanho da imagem */
+.logo-img {
+    height: 50px; /* Altere este valor para o tamanho que desejar na barra */
+    width: auto;  /* Mantém a proporção da imagem */
+    display: block;
+}
+
+/* Se quiser manter o efeito de alinhamento da topbar */
+.topbar {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background-color: #ffffff; /* Ou a cor que você já estiver usando */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
