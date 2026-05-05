@@ -12,7 +12,7 @@ const state = window.DoeVidaState || {};
             document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + id).classList.add('active');
-            document.querySelector(`[data-tab="${id}"]`).classList.add('active');
+            document.querySelector(`[data-tab="${id}"]`)?.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (id === 'map') setTimeout(initMap, 100);
         }
@@ -52,11 +52,23 @@ const state = window.DoeVidaState || {};
 
         function renderFeed() {
             const el = document.getElementById('feedPosts');
-            const ordered = [...campaigns].sort((a, b) => {
+            const region = document.getElementById('filterRegion')?.value || '';
+            const blood = document.getElementById('filterBlood')?.value || '';
+            const filtered = campaigns.filter(c => {
+                const matchRegion = !region || c.bairro === region || c.cidade === region;
+                const matchBlood = !blood || c.blood === blood || c.blood === 'Todos';
+                return matchRegion && matchBlood;
+            });
+            const ordered = [...filtered].sort((a, b) => {
                 const ua = calcularUrgencia(a.dataLimite);
                 const ub = calcularUrgencia(b.dataLimite);
                 return ua.peso - ub.peso || new Date(a.dataLimite) - new Date(b.dataLimite);
             });
+
+            if (!ordered.length) {
+                el.innerHTML = `<div class="post-card"><div class="post-body">Nenhuma campanha encontrada para os filtros selecionados.</div></div>`;
+                return;
+            }
 
             el.innerHTML = ordered.map(c => {
                 const urg = calcularUrgencia(c.dataLimite);
@@ -84,37 +96,36 @@ const state = window.DoeVidaState || {};
       <div class="campaign-info-grid">
         <div class="campaign-info"><div class="label">Local de doação</div><div class="value">${c.local}</div></div>
         <div class="campaign-info"><div class="label">Data limite</div><div class="value">${new Date(c.dataLimite + 'T12:00').toLocaleDateString('pt-BR')}</div></div>
-        <div class="campaign-info"><div class="label">Doadores desejados</div><div class="value">${c.qtd}</div></div>
-        <div class="campaign-info"><div class="label">Contato</div><div class="value">${c.contato}</div></div>
       </div>
 
       <div class="post-foot">
-        <button class="post-btn" onclick="interestCampaign(${c.id})">🩸 Quero doar · ${c.interessados}</button>
-        <button class="post-btn" onclick="sharePost(${c.id})">📤 Compartilhar campanha</button>
+        <button class="post-btn post-btn-primary" onclick="openScheduleModal(${c.id})">Agendar doação</button>
+        <button class="post-btn" onclick="openCampaignDetail(${c.id})">Ver campanha</button>
+        <button class="post-btn" onclick="shareCampaign(${c.id})">Compartilhar</button>
       </div>
     </div>`;
             }).join('');
         }
 
-        function interestCampaign(id) {
-            if (!state.user) { openModal('loginModal'); toast('⚠️ Faça login para sinalizar interesse', true); return; }
-            const c = campaigns.find(x => x.id === id);
-            c.interessados += 1;
+        function clearCampaignFilters() {
+            const region = document.getElementById('filterRegion');
+            const blood = document.getElementById('filterBlood');
+            if (region) region.value = '';
+            if (blood) blood.value = '';
             renderFeed();
-            toast('Interesse registrado. A campanha poderá aparecer como prioridade para você.');
+        }
+
+        function interestCampaign(id) {
+            const c = campaigns.find(x => x.id === id);
+            if (!c) { toast('Campanha não encontrada.', true); return; }
+            c.interessados += 1;
+            trackCampaignEvent(id, 'interest_clicked');
+            renderFeed();
+            toast('Interesse registrado. Você pode iniciar o agendamento ou compartilhar a campanha.');
         }
 
         function sharePost(id) {
-            const c = campaigns.find(x => x.id === id);
-            const ref = state.user ? encodeURIComponent(state.user.email || state.user.nome || 'usuario') : 'visitante';
-            const link = `https://doevida.netlify.app/campanha?id=${c.id}&ref=${ref}`;
-            const msg = `Campanha DoeVida: ${c.titulo} | Sangue: ${c.blood} | Local: ${c.local} | Link: ${link}`;
-            if (navigator.share) {
-                navigator.share({ title: c.titulo, text: msg }).catch(() => { });
-            } else {
-                navigator.clipboard?.writeText(msg);
-            }
-            toast('Link de divulgação gerado. Seu impacto será acompanhado conforme a campanha alcançar pessoas interessadas.');
+            shareCampaign(id);
         }
 
         /* ──────────────────────────────────────
@@ -176,14 +187,15 @@ const state = window.DoeVidaState || {};
             document.getElementById('userArea').classList.toggle('show', ok);
             document.getElementById('ptsBadge').classList.toggle('show', ok);
             document.getElementById('feedComposer').style.display = ok ? 'block' : 'none';
-            document.getElementById('ptsCard').style.display = ok ? 'block' : 'none';
+            const ptsCard = document.getElementById('ptsCard');
+            if (ptsCard) ptsCard.style.display = ok ? 'block' : 'none';
 
             if (ok) {
                 document.getElementById('navAvatar').textContent = state.user.initials;
                 document.getElementById('navName').textContent = state.user.nome;
                 document.getElementById('compAvatar').textContent = state.user.initials;
                 document.getElementById('ptsVal').textContent = state.pts;
-                document.getElementById('sidebarPts').textContent = state.pts;
+                if (document.getElementById('sidebarPts')) document.getElementById('sidebarPts').textContent = state.pts;
                 updateProgress();
                 updateWallet();
             }
@@ -200,6 +212,136 @@ const state = window.DoeVidaState || {};
             if (document.getElementById('wPts')) document.getElementById('wPts').textContent = state.pts;
             updateProgress();
             updateWalletLevel();
+        }
+
+        function currentTrackingRef(refOverride) {
+            if (refOverride) return refOverride;
+            const params = new URLSearchParams(window.location.search);
+            return params.get('ref') || null;
+        }
+
+        function trackCampaignEvent(campaignId, eventName, refOverride) {
+            const events = JSON.parse(localStorage.getItem('doevida_tracking_events') || '[]');
+            events.push({
+                campaignId: String(campaignId),
+                ref: currentTrackingRef(refOverride),
+                event: eventName,
+                createdAt: new Date().toISOString()
+            });
+            localStorage.setItem('doevida_tracking_events', JSON.stringify(events));
+        }
+
+        function generateTrackableLink(campaignId) {
+            const ref = state.user?.id || state.user?.email || state.user?.cpf || state.user?.initials || 'anon';
+            const base = 'https://doevida.netlify.app/';
+            const campaignParam = encodeURIComponent(String(campaignId));
+            if (!state.user) return `${base}?campaign=${campaignParam}`;
+            return `${base}?campaign=${campaignParam}&ref=${encodeURIComponent(ref)}`;
+        }
+
+        function shareCampaign(campaignId) {
+            const link = generateTrackableLink(campaignId);
+            trackCampaignEvent(campaignId, 'campaign_shared');
+            const done = () => toast('Link da campanha copiado. As interações geradas por esse link poderão contar como mobilização qualificada.');
+            if (navigator.clipboard?.writeText) {
+                navigator.clipboard.writeText(link).then(done).catch(() => {
+                    window.prompt('Copie o link da campanha:', link);
+                    done();
+                });
+            } else {
+                window.prompt('Copie o link da campanha:', link);
+                done();
+            }
+        }
+
+        function openCampaignDetail(campaignId, options = {}) {
+            const campaign = campaigns.find(c => String(c.id) === String(campaignId));
+            if (!campaign) {
+                toast('Campanha não encontrada.', true);
+                switchTab('feed');
+                return;
+            }
+            renderCampaignDetail(campaign);
+            switchTab('campaign-detail');
+            if (!options.skipPageView) trackCampaignEvent(campaign.id, 'campaign_page_view');
+            trackCampaignEvent(campaign.id, 'campaign_main_info_viewed');
+        }
+
+        function renderCampaignDetail(c) {
+            const el = document.getElementById('tab-campaign-detail');
+            if (!el) return;
+            const urg = calcularUrgencia(c.dataLimite);
+            const tipoLabel = c.tipo === 'pessoal' ? 'Campanha pessoal' : 'Campanha institucional';
+            const link = generateTrackableLink(c.id);
+            el.innerHTML = `
+    <div class="wrap">
+      <section class="campaign-detail">
+        <button class="btn btn-ghost btn-sm" onclick="switchTab('feed')">Voltar para campanhas</button>
+        <div class="campaign-detail-hero">
+          <div>
+            <div class="campaign-tags">
+              <span class="campaign-tag ${urg.nivel}">${urg.label} · ${textoPrazo(urg.dias)}</span>
+              <span class="campaign-tag">${statusVerificacao(c)}</span>
+              <span class="campaign-tag">${tipoLabel}</span>
+            </div>
+            <h2 class="sec-title">${c.titulo}</h2>
+            <p class="sec-sub">${c.descricao}</p>
+          </div>
+        </div>
+
+        <div class="campaign-detail-grid">
+          <div class="campaign-detail-main">
+            <h3>Sobre a campanha</h3>
+            <p>${c.descricao}</p>
+            <h3>Orientações para quem deseja doar</h3>
+            <p>Confira os requisitos de aptidão, alimente-se bem, leve documento oficial com foto e confirme diretamente com o local responsável as orientações atualizadas antes de se deslocar.</p>
+            <div class="campaign-flow">
+              <div class="campaign-flow-step"><strong>1</strong><span>Acesso à campanha</span></div>
+              <div class="campaign-flow-step"><strong>2</strong><span>Interesse sinalizado</span></div>
+              <div class="campaign-flow-step"><strong>3</strong><span>Agendamento iniciado</span></div>
+              <div class="campaign-flow-step"><strong>4</strong><span>Solicitação enviada</span></div>
+            </div>
+            <p class="points-notice">Esta campanha pode ser compartilhada por um link rastreável. As interações geradas ajudam a medir alcance, interesse e mobilização qualificada, sem gerar recompensa pela doação em si.</p>
+          </div>
+
+          <aside class="campaign-detail-side">
+            <div class="campaign-info"><div class="label">Responsável</div><div class="value">${c.responsavel}</div></div>
+            <div class="campaign-info"><div class="label">Instituição ou local vinculado</div><div class="value">${c.instituicao || c.local}</div></div>
+            <div class="campaign-info"><div class="label">Tipo sanguíneo necessário</div><div class="value">${c.blood}</div></div>
+            <div class="campaign-info"><div class="label">Doadores necessários</div><div class="value">${c.qtd}</div></div>
+            <div class="campaign-info"><div class="label">Local de doação</div><div class="value">${c.local}</div></div>
+            <div class="campaign-info"><div class="label">Cidade e bairro</div><div class="value">${c.cidade} · ${c.bairro}</div></div>
+            <div class="campaign-info"><div class="label">Data limite</div><div class="value">${new Date(c.dataLimite + 'T12:00').toLocaleDateString('pt-BR')}</div></div>
+            <div class="campaign-info"><div class="label">Contato</div><div class="value">${c.contato}</div></div>
+            <div class="schedule-summary">
+              <label>Link rastreável</label>
+              <div>${link}</div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="campaign-detail-actions">
+          <button class="btn btn-red btn-lg" onclick="openScheduleModal(${c.id})">Agendar doação</button>
+          <button class="btn btn-outline btn-lg" onclick="shareCampaign(${c.id})">Compartilhar campanha</button>
+          <button class="btn btn-ghost btn-lg" onclick="switchTab('feed')">Voltar para campanhas</button>
+        </div>
+      </section>
+    </div>`;
+        }
+
+        function handleCampaignUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            const campaignId = params.get('campaign');
+            const ref = params.get('ref');
+            if (!campaignId) return;
+            const campaign = campaigns.find(c => String(c.id) === String(campaignId));
+            if (!campaign) {
+                toast('Campanha não encontrada.', true);
+                switchTab('feed');
+                return;
+            }
+            if (ref) trackCampaignEvent(campaignId, 'campaign_page_view', ref);
+            openCampaignDetail(campaignId, { skipPageView: !!ref });
         }
 
         function updateProgress() {
@@ -326,6 +468,55 @@ const state = window.DoeVidaState || {};
             closeModal('donationModal');
             toast('Doação registrada no histórico pessoal.');
             updateDonaStatus();
+        }
+
+        function openScheduleModal(campaignId) {
+            const campaign = campaigns.find(c => String(c.id) === String(campaignId));
+            if (!campaign) { toast('Campanha não encontrada.', true); return; }
+            state.scheduleCampaignId = campaign.id;
+            const title = document.getElementById('scheduleCampaignTitle');
+            const local = document.getElementById('scheduleLocation');
+            if (title) title.textContent = campaign.titulo;
+            if (local) local.value = campaign.local;
+            trackCampaignEvent(campaign.id, 'schedule_started');
+            openModal('scheduleModal');
+        }
+
+        function submitScheduleRequest() {
+            const campaign = campaigns.find(c => String(c.id) === String(state.scheduleCampaignId));
+            if (!campaign) { toast('Campanha não encontrada.', true); return; }
+            const name = document.getElementById('scheduleName').value.trim();
+            const contact = document.getElementById('scheduleContact').value.trim();
+            const date = document.getElementById('scheduleDate').value;
+            const time = document.getElementById('scheduleTime').value;
+            const location = document.getElementById('scheduleLocation').value.trim();
+            const notes = document.getElementById('scheduleNotes').value.trim();
+            if (!name || !contact || !date || !time) {
+                toast('⚠️ Preencha nome, contato, data e horário', true);
+                return;
+            }
+
+            const requests = JSON.parse(localStorage.getItem('doevida_schedule_requests') || '[]');
+            requests.push({
+                campaignId: campaign.id,
+                campaignTitle: campaign.titulo,
+                name,
+                contact,
+                date,
+                time,
+                location,
+                notes,
+                ref: currentTrackingRef(),
+                createdAt: new Date().toISOString()
+            });
+            localStorage.setItem('doevida_schedule_requests', JSON.stringify(requests));
+            trackCampaignEvent(campaign.id, 'schedule_submitted');
+            ['scheduleName', 'scheduleContact', 'scheduleDate', 'scheduleTime', 'scheduleNotes'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+            closeModal('scheduleModal');
+            toast('Solicitação de agendamento registrada. A instituição responsável poderá confirmar as orientações da doação.');
         }
 
         /* ──────────────────────────────────────
@@ -487,10 +678,13 @@ const state = window.DoeVidaState || {};
         ────────────────────────────────────── */
         document.addEventListener('DOMContentLoaded', () => {
             renderFeed();
+            handleCampaignUrlParams();
             // Set today's date as default for donation form
             const today = new Date().toISOString().split('T')[0];
             const donaDataEl = document.getElementById('donaData');
             if (donaDataEl) { donaDataEl.value = today; donaDataEl.max = today; }
+            const scheduleDateEl = document.getElementById('scheduleDate');
+            if (scheduleDateEl) { scheduleDateEl.min = today; }
         });
 
 
@@ -498,6 +692,14 @@ Object.assign(window, {
   switchTab,
   interestCampaign,
   sharePost,
+  openCampaignDetail,
+  renderCampaignDetail,
+  shareCampaign,
+  generateTrackableLink,
+  trackCampaignEvent,
+  openScheduleModal,
+  submitScheduleRequest,
+  clearCampaignFilters,
   doRegister,
   doLogin,
   logout,

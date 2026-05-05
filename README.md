@@ -31,5 +31,4 @@ Publique a pasta inteira `doevida_modularizado`. O arquivo de entrada é `index.
 ## 1 - Guia Campanhas:
     Deveria ser tanto para empresas que querem ajudar a ter um camapanha (escola, facul, empresa) quanto para clinicas e hospitais que querem divulgar sua campanha
 ## 2 - Login:
-    So tem login de quem vai doar ou divulgar campanhas em adanmaento nao tem como criar um conta e criar uma camapanha pessoal ou grande (organizada por hospital ou clinica)
-## 3 - 
+    validacao minimia de email e senha

@@ -180,72 +180,34 @@
                         <div id="feedPosts"></div>
                     </div>
                     <div class="feed-aside">
-                        <div class="aside-card" id="ptsCard" style="display:none;">
-                            <h3>Seus Pontos de Mobilização</h3>
-                            <div class="pts-display">
-                                <div class="medal">🥇</div>
-                                <div class="big" id="sidebarPts">0</div>
-                                <div class="lbl">pontos de mobilização</div>
-                            </div>
-                            <div class="prog-wrap">
-                                <div class="prog-labels"><span>Próximo benefício</span><span id="progLbl">0/300</span>
-                                </div>
-                                <div class="prog-bar">
-                                    <div class="prog-fill" id="progFill" style="width:0%"></div>
-                                </div>
-                            </div>
-                            <button class="btn btn-green btn-block" style="margin-top:12px;"
-                                onclick="switchTab('points')">Ver benefícios</button>
-                        </div>
                         <div class="aside-card">
-                            <h3>Mobilizadores em destaque</h3>
-                            <ul class="lb-list">
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥇</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#2D6A4F,#52B788)">Ma
-                                    </div>
-                                    <div class="lb-name">Maria S.</div>
-                                    <div class="lb-pts">2.450</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥈</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#374151,#6b7280)">Jo
-                                    </div>
-                                    <div class="lb-name">João F.</div>
-                                    <div class="lb-pts">1.980</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥉</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#92400e,#d97706)">An
-                                    </div>
-                                    <div class="lb-name">Ana R.</div>
-                                    <div class="lb-pts">1.720</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">4</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#5B21B6,#7C3AED)">Ca
-                                    </div>
-                                    <div class="lb-name">Carlos M.</div>
-                                    <div class="lb-pts">1.400</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">5</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#0369A1,#0284C7)">Bi
-                                    </div>
-                                    <div class="lb-name">Bianca P.</div>
-                                    <div class="lb-pts">1.150</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="aside-card">
-                            <h3>🩸 Urgência Hoje — Hemope</h3>
-                            <div class="blood-urgent">
-                                <div class="bu-chip urgent">O−</div>
-                                <div class="bu-chip urgent">AB−</div>
-                                <div class="bu-chip">A−</div>
-                                <div class="bu-chip">B−</div>
-                                <div class="bu-chip">O+</div>
-                                <div class="bu-chip">A+</div>
+                            <h3>Filtrar campanhas</h3>
+                            <div class="feed-filter">
+                                <div class="form-group">
+                                    <label class="form-label">Região</label>
+                                    <select class="form-input" id="filterRegion" onchange="renderFeed()">
+                                        <option value="">Todas as regiões</option>
+                                        <option value="Derby">Derby</option>
+                                        <option value="Cidade Universitária">Cidade Universitária</option>
+                                        <option value="Recife">Recife</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Tipo sanguíneo</label>
+                                    <select class="form-input" id="filterBlood" onchange="renderFeed()">
+                                        <option value="">Todos os tipos</option>
+                                        <option>A+</option>
+                                        <option>A-</option>
+                                        <option>B+</option>
+                                        <option>B-</option>
+                                        <option>AB+</option>
+                                        <option>AB-</option>
+                                        <option>O+</option>
+                                        <option>O-</option>
+                                        <option>Todos</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-ghost btn-block" onclick="clearCampaignFilters()">Limpar filtros</button>
                             </div>
                         </div>
                     </div>
@@ -382,6 +344,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- ── TAB: DETALHE DA CAMPANHA ── -->
+        <div class="tab-panel" id="tab-campaign-detail"></div>
 
         <!-- ── TAB: MAPA ── -->
         <div class="tab-panel" id="tab-map">
@@ -851,6 +816,44 @@
                 <input type="date" class="form-input" id="donaData" />
             </div>
             <button class="btn btn-red btn-lg btn-block" onclick="registerDonation()">Registrar doação</button>
+        </div>
+    </div>
+
+    <!-- SCHEDULE REQUEST -->
+    <div class="glass-overlay" id="scheduleModal" onclick="closeOnBg(event,'scheduleModal')">
+        <div class="glass-card">
+            <button class="glass-x" onclick="closeModal('scheduleModal')">✕</button>
+            <h2>Solicitação de agendamento</h2>
+            <p class="sub">Campanha vinculada: <strong id="scheduleCampaignTitle">Campanha</strong></p>
+            <div class="form-group">
+                <label class="form-label">Nome completo *</label>
+                <input class="form-input" id="scheduleName" placeholder="Seu nome completo" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">E-mail ou telefone *</label>
+                <input class="form-input" id="scheduleContact" placeholder="seu@email.com ou WhatsApp" />
+            </div>
+            <div class="form-2col">
+                <div class="form-group">
+                    <label class="form-label">Data desejada *</label>
+                    <input type="date" class="form-input" id="scheduleDate" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Horário desejado *</label>
+                    <input type="time" class="form-input" id="scheduleTime" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Local de doação</label>
+                <input class="form-input" id="scheduleLocation" />
+            </div>
+            <div class="form-group">
+                <label class="form-label">Observações opcionais</label>
+                <textarea class="form-input" id="scheduleNotes" rows="3"
+                    placeholder="Informe restrições de horário, dúvidas ou observações."
+                    style="resize:vertical;border-radius:16px;"></textarea>
+            </div>
+            <button class="btn btn-green btn-lg btn-block" onclick="submitScheduleRequest()">Enviar solicitação</button>
         </div>
     </div>
 

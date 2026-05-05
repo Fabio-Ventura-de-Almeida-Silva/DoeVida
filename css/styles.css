@@ -919,6 +919,7 @@
 
         .post-foot {
             display: flex;
+            flex-wrap: wrap;
             gap: 4px;
             padding-top: 12px;
             border-top: 1px solid var(--gray2);
@@ -945,9 +946,139 @@
             color: var(--g600);
         }
 
+        .post-btn-primary {
+            background: linear-gradient(135deg, #e53935, #ef5350);
+            color: white;
+            box-shadow: 0 4px 14px rgba(229, 57, 53, .28);
+        }
+
+        .post-btn-primary:hover {
+            background: linear-gradient(135deg, #d32f2f, #e53935);
+            color: white;
+            transform: translateY(-1px);
+        }
+
         .post-btn.liked {
             color: var(--red);
             background: var(--red-soft);
+        }
+
+        .campaign-detail {
+            padding: 36px 0 70px;
+        }
+
+        .campaign-detail-hero {
+            margin-top: 18px;
+            padding: 30px;
+            border-radius: var(--r-xl);
+            background: var(--off);
+            border: 1px solid var(--gray2);
+        }
+
+        .campaign-detail-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(280px, .8fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .campaign-detail-main,
+        .campaign-detail-side {
+            background: white;
+            border: 1px solid var(--gray2);
+            border-radius: var(--r-lg);
+            padding: 24px;
+            box-shadow: var(--sh1);
+        }
+
+        .campaign-detail-main h3 {
+            font-family: var(--font-title);
+            font-size: 1.35rem;
+            margin: 0 0 10px;
+        }
+
+        .campaign-detail-main p {
+            color: var(--gray6);
+            line-height: 1.75;
+            margin-bottom: 18px;
+        }
+
+        .campaign-detail-side {
+            display: grid;
+            gap: 10px;
+            align-self: start;
+        }
+
+        .campaign-detail-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+
+        .campaign-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 22px 0;
+        }
+
+        .campaign-flow-step {
+            background: var(--off);
+            border: 1px solid var(--gray2);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        .campaign-flow-step strong {
+            display: inline-flex;
+            width: 26px;
+            height: 26px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--g600);
+            color: white;
+            font-size: .78rem;
+            margin-bottom: 8px;
+        }
+
+        .campaign-flow-step span {
+            display: block;
+            color: var(--gray6);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .schedule-summary {
+            background: var(--g50);
+            border: 1px solid var(--g100);
+            border-radius: 12px;
+            padding: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .schedule-summary label {
+            display: block;
+            color: var(--gray4);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .schedule-summary div {
+            color: var(--g600);
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 960px) {
+            .campaign-detail-grid,
+            .campaign-flow {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Feed sidebar */
@@ -972,6 +1103,11 @@
             font-size: 1rem;
             color: var(--dark);
             margin-bottom: 14px;
+        }
+
+        .feed-filter {
+            display: grid;
+            gap: 12px;
         }
 
         .pts-display {
