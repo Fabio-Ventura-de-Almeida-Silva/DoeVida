@@ -1,4 +1,21 @@
-<header class="topbar">
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoeVida — Doe Sangue, Viva com Recompensas</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body>
+
+    <!-- ════════ TOP BAR ════════ -->
+    <header class="topbar">
     <div class="logo">
         <a href="#">
             <img src="logo-doevida.png" alt="Doe Vida Logo" class="logo-img">
@@ -6,3 +23,906 @@
     </div>
     <div class="topbar-spacer"></div>
 </header>
+
+        <!-- Points badge (shown after login) -->
+        <div class="pts-badge" id="ptsBadge">
+            <div class="pts-coin">🥇</div>
+            <span class="pts-val" id="ptsVal">300</span>
+            <span style="font-size:.78rem;color:#92400e;">pts</span>
+        </div>
+
+        <!-- Auth buttons -->
+        <div class="topbar-auth" id="authBtns">
+            <button class="btn btn-outline btn-sm" onclick="openModal('loginModal')">Entrar</button>
+            <button class="btn btn-green btn-sm" onclick="openModal('registerModal')">Cadastrar</button>
+        </div>
+
+        <!-- Logged-in user -->
+        <div class="topbar-user" id="userArea">
+            <div class="avatar-sm" id="navAvatar">U</div>
+            <span id="navName" style="font-size:.85rem;font-weight:600;color:var(--gray6);"></span>
+            <button class="btn btn-ghost btn-sm" onclick="logout()">Sair</button>
+        </div>
+    </header>
+
+    <!-- ════════ TABS ════════ -->
+    <div class="tabs-wrap">
+        <nav class="tabs-nav" id="tabsNav">
+            <button class="tab-btn active" data-tab="home"> <span class="tab-icon">🏠</span> Início</button>
+            <button class="tab-btn" data-tab="feed"> <span class="tab-icon">📣</span> Campanhas de Doação</button>
+            <button class="tab-btn" data-tab="wallet"> <span class="tab-icon">💳</span> Carteira</button>
+            <button class="tab-btn" data-tab="points"> <span class="tab-icon">🏅</span> Pontos</button>
+            <button class="tab-btn" data-tab="map"> <span class="tab-icon">📍</span> Mapa</button>
+            <button class="tab-btn" data-tab="rules"> <span class="tab-icon">📋</span> Regras</button>
+            <button class="tab-btn" data-tab="campaigns"><span class="tab-icon">📣</span> Campanhas</button>
+        </nav>
+    </div>
+
+    <!-- ════════════════════════════════════════
+     PAGE FRAME
+════════════════════════════════════════ -->
+    <main class="page-frame">
+
+        <!-- ── TAB: HOME ── -->
+        <div class="tab-panel active" id="tab-home">
+            <section class="hero">
+                <div class="wrap">
+                    <div class="hero-inner">
+                        <div>
+                            <div class="hero-pill">🩸 Recife doa, Recife vive</div>
+                            <h1 class="hero-h1">
+                                Doe <span class="em-red">Sangue.</span><br>
+                                Ganhe <span class="em-green">Recompensas.</span><br>
+                                Salve Vidas.
+                            </h1>
+                            <p class="hero-lead">A primeira plataforma de doação de sangue com gamificação real do
+                                Nordeste. Cada doação vira pontos, cada ponto vira desconto em farmácias parceiras de
+                                Recife.</p>
+                            <div class="hero-btns">
+                                <button class="btn btn-green btn-lg" onclick="openModal('registerModal')">🩸 Começar a
+                                    Doar</button>
+                                <button class="btn btn-outline btn-lg" onclick="switchTab('rules')">Ver
+                                    requisitos</button>
+                            </div>
+                            <div class="hero-stats">
+                                <div>
+                                    <div class="hstat-n">4.200+</div>
+                                    <div class="hstat-l">Doadores ativos</div>
+                                </div>
+                                <div>
+                                    <div class="hstat-n">12mil</div>
+                                    <div class="hstat-l">Vidas salvas</div>
+                                </div>
+                                <div>
+                                    <div class="hstat-n">38</div>
+                                    <div class="hstat-l">Postos parceiros</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <div class="hero-card">
+                                <span class="drop-big">🩸</span>
+                                <h3 class="hero-card-h">Seja um Herói</h3>
+                                <p class="hero-card-p">Uma doação salva até 4 vidas</p>
+                                <div class="blood-chips">
+                                    <span class="bchip">A+</span><span class="bchip">A−</span>
+                                    <span class="bchip">B+</span><span class="bchip">O+</span>
+                                    <span class="bchip">O−</span><span class="bchip">AB+</span>
+                                </div>
+                            </div>
+                            <div class="float-tag ft-1">
+                                <span class="ft-icon">🏅</span>
+                                <div>
+                                    <div class="ft-v">+300 pts</div>
+                                    <div class="ft-l">bônus de cadastro</div>
+                                </div>
+                            </div>
+                            <div class="float-tag ft-2">
+                                <span class="ft-icon">✅</span>
+                                <div>
+                                    <div style="font-weight:700;font-size:.88rem;">Doação confirmada</div>
+                                    <div class="ft-l">Hemope · há 5min</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="sec" id="home-steps">
+                <div class="wrap">
+                    <div style="text-align:center;margin-bottom:44px;">
+                        <div class="chip">✦ Simples assim</div>
+                        <h2 class="sec-title" style="text-align:center;">Como funciona o DoeVida</h2>
+                        <p class="sec-sub" style="margin:0 auto;text-align:center;">Do cadastro à recompensa em 4 passos
+                            simples.</p>
+                    </div>
+                    <div class="grid-4">
+                        <div class="step-card">
+                            <div class="step-n">1</div>
+                            <div class="step-icon">📋</div>
+                            <h3>Cadastre-se</h3>
+                            <p>Crie sua conta e ganhe <strong>300 pontos</strong> de bônus imediatamente.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-n">2</div>
+                            <div class="step-icon">📍</div>
+                            <h3>Localize um posto</h3>
+                            <p>Use o mapa para encontrar o Hemope, Ihene ou hospital mais próximo.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-n">3</div>
+                            <div class="step-icon">🩸</div>
+                            <h3>Doe sangue</h3>
+                            <p>Realize a doação e confirme na plataforma. Vale <strong>+100 pontos</strong>.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-n">4</div>
+                            <div class="step-icon">🎁</div>
+                            <h3>Resgate descontos</h3>
+                            <p>Troque seus pontos por vouchers de 5%, 7% e 10% em farmácias.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ── TAB: FEED ── -->
+        <div class="tab-panel" id="tab-feed" style="padding-top:0;">
+            <div class="wrap">
+                <div class="feed-layout">
+                    <div class="feed-main">
+                        <div class="composer" id="feedComposer" style="display:none;">
+                            <div class="composer-row">
+                                <div class="avatar-sm" id="compAvatar">U</div>
+                                <div class="comp-input" onclick="openModal('postModal')">Divulgue uma campanha de doação…</div>
+                            </div>
+                            <div class="comp-actions">
+                                <button class="btn btn-ghost btn-sm" onclick="openModal('postModal')">🏥 Institucional</button>
+                                <button class="btn btn-ghost btn-sm" onclick="openModal('postModal')">👨‍👩‍👧 Pessoal</button>
+                                <button class="btn btn-green btn-sm" onclick="openModal('postModal')">Criar campanha</button>
+                            </div>
+                        </div>
+                        <div id="feedPosts"></div>
+                    </div>
+                    <div class="feed-aside">
+                        <div class="aside-card" id="ptsCard" style="display:none;">
+                            <h3>🏅 Seus Pontos</h3>
+                            <div class="pts-display">
+                                <div class="medal">🥇</div>
+                                <div class="big" id="sidebarPts">300</div>
+                                <div class="lbl">pontos acumulados</div>
+                            </div>
+                            <div class="prog-wrap">
+                                <div class="prog-labels"><span>Nível Bronze</span><span id="progLbl">300/700</span>
+                                </div>
+                                <div class="prog-bar">
+                                    <div class="prog-fill" id="progFill" style="width:42%"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-green btn-block" style="margin-top:12px;"
+                                onclick="switchTab('points')">🎟️ Ver recompensas</button>
+                        </div>
+                        <div class="aside-card">
+                            <h3>🏆 Top Doadores</h3>
+                            <ul class="lb-list">
+                                <li class="lb-item">
+                                    <div class="lb-pos">🥇</div>
+                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#2D6A4F,#52B788)">Ma
+                                    </div>
+                                    <div class="lb-name">Maria S.</div>
+                                    <div class="lb-pts">2.450</div>
+                                </li>
+                                <li class="lb-item">
+                                    <div class="lb-pos">🥈</div>
+                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#374151,#6b7280)">Jo
+                                    </div>
+                                    <div class="lb-name">João F.</div>
+                                    <div class="lb-pts">1.980</div>
+                                </li>
+                                <li class="lb-item">
+                                    <div class="lb-pos">🥉</div>
+                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#92400e,#d97706)">An
+                                    </div>
+                                    <div class="lb-name">Ana R.</div>
+                                    <div class="lb-pts">1.720</div>
+                                </li>
+                                <li class="lb-item">
+                                    <div class="lb-pos">4</div>
+                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#5B21B6,#7C3AED)">Ca
+                                    </div>
+                                    <div class="lb-name">Carlos M.</div>
+                                    <div class="lb-pts">1.400</div>
+                                </li>
+                                <li class="lb-item">
+                                    <div class="lb-pos">5</div>
+                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#0369A1,#0284C7)">Bi
+                                    </div>
+                                    <div class="lb-name">Bianca P.</div>
+                                    <div class="lb-pts">1.150</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="aside-card">
+                            <h3>🩸 Urgência Hoje — Hemope</h3>
+                            <div class="blood-urgent">
+                                <div class="bu-chip urgent">O−</div>
+                                <div class="bu-chip urgent">AB−</div>
+                                <div class="bu-chip">A−</div>
+                                <div class="bu-chip">B−</div>
+                                <div class="bu-chip">O+</div>
+                                <div class="bu-chip">A+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TAB: CARTEIRA ── -->
+        <div class="tab-panel" id="tab-wallet">
+            <div class="wallet-wrap">
+                <div id="walletLoggedOut" style="text-align:center;padding:80px 0;">
+                    <div style="font-size:4rem;margin-bottom:16px;">🔐</div>
+                    <h2 style="font-family:var(--font-title);font-size:1.8rem;margin-bottom:8px;">Acesso restrito</h2>
+                    <p style="color:var(--gray5);margin-bottom:24px;">Faça login para visualizar sua carteira de doador.
+                    </p>
+                    <button class="btn btn-green btn-lg" onclick="openModal('loginModal')">Entrar na conta</button>
+                </div>
+                <div id="walletLoggedIn" style="display:none;">
+                    <div class="wallet-card">
+                        <div class="wallet-header">
+                            <div class="wallet-avatar" id="wAvatar">U</div>
+                            <div class="wallet-name" id="wName">Nome do Usuário</div>
+                            <div class="wallet-email" id="wEmail">email@exemplo.com</div>
+                            <div class="wallet-stats-row">
+                                <div class="wst">
+                                    <div class="n" id="wPts">300</div>
+                                    <div class="l">pontos</div>
+                                </div>
+                                <div class="wst">
+                                    <div class="n" id="wDoas">0</div>
+                                    <div class="l">doações</div>
+                                </div>
+                                <div class="wst">
+                                    <div class="n" id="wNivel">Bronze</div>
+                                    <div class="l">nível</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wallet-body">
+                            <div class="wallet-grid" id="walletFields"></div>
+                            <div id="donaStatus" class="dona-status none">
+                                <div class="icon">💉</div>
+                                <div class="info">
+                                    <div class="title">Status de doação</div>
+                                    <div class="sub">Registre sua primeira doação na plataforma.</div>
+                                </div>
+                            </div>
+                            <div class="wallet-divider"></div>
+                            <button class="btn btn-green btn-sm" onclick="toggleWalletEdit()">✏️ Editar perfil</button>
+                            <button class="btn btn-green btn-sm" style="margin-left:8px;"
+                                onclick="openModal('donationModal')">🩸 Registrar doação</button>
+                            <div class="wallet-edit-form" id="walletEditForm" style="margin-top:20px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TAB: PONTOS ── -->
+        <div class="tab-panel" id="tab-points">
+            <div class="wrap">
+                <div class="points-wrap">
+                    <div class="chip">🏅 Gamificação</div>
+                    <h2 class="sec-title">Pontos & Recompensas</h2>
+                    <p class="sec-sub" style="margin-bottom:40px;">Doe mais, ganhe mais. Cada ação vale pontos reais.
+                    </p>
+
+                    <div class="pts-earn-grid">
+                        <div class="pts-earn-card">
+                            <div class="icon">🎉</div>
+                            <div class="pval">+300</div>
+                            <div class="plbl">Cadastro na plataforma</div>
+                        </div>
+                        <div class="pts-earn-card">
+                            <div class="icon">🩸</div>
+                            <div class="pval">+100</div>
+                            <div class="plbl">Cada doação confirmada</div>
+                        </div>
+                        <div class="pts-earn-card">
+                            <div class="icon">📢</div>
+                            <div class="pval">+50</div>
+                            <div class="plbl">Compartilhar campanha</div>
+                        </div>
+                        <div class="pts-earn-card">
+                            <div class="icon">💬</div>
+                            <div class="pval">+10</div>
+                            <div class="plbl">Sinalizar interesse</div>
+                        </div>
+                    </div>
+
+                    <h3 class="vouchers-title">Seus Vouchers de Desconto</h3>
+                    <p class="vouchers-sub">Troque seus pontos por descontos reais em farmácias parceiras de Recife e
+                        Grande Recife.</p>
+
+                    <div class="voucher-grid">
+                        <div class="voucher">
+                            <div class="v-top v-bronze">
+                                <div class="v-badge">DISPONÍVEL</div>
+                                <div class="v-pct">5<span>%</span></div>
+                                <div class="v-off">de desconto em farmácias</div>
+                            </div>
+                            <div class="v-body">
+                                <h4>Voucher Bronze</h4>
+                                <p>Válido em toda a rede de farmácias parceiras DoeVida em Recife e Grande Recife.</p>
+                                <div class="v-req">⭐ Requer 300 pts</div>
+                                <div class="v-sep"></div>
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA5-PE')">DOEVIDA5-PE &nbsp;📋</div>
+                            </div>
+                        </div>
+                        <div class="voucher">
+                            <div class="v-top v-silver">
+                                <div class="v-badge">POPULAR</div>
+                                <div class="v-pct">7<span>%</span></div>
+                                <div class="v-off">de desconto em farmácias</div>
+                            </div>
+                            <div class="v-body">
+                                <h4>Voucher Prata</h4>
+                                <p>Para doadores frequentes. Válido por 30 dias após resgate em farmácias parceiras.</p>
+                                <div class="v-req">⭐ Requer 700 pts</div>
+                                <div class="v-sep"></div>
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA7-PRATA')">DOEVIDA7-PRATA &nbsp;📋
+                                </div>
+                            </div>
+                        </div>
+                        <div class="voucher">
+                            <div class="v-top v-gold">
+                                <div class="v-badge">EXCLUSIVO</div>
+                                <div class="v-pct">10<span>%</span></div>
+                                <div class="v-off">de desconto em farmácias</div>
+                            </div>
+                            <div class="v-body">
+                                <h4>Voucher Ouro</h4>
+                                <p>Para os maiores heróis. Desconto máximo em toda a rede DoeVida de Recife.</p>
+                                <div class="v-req">⭐ Requer 1.500 pts</div>
+                                <div class="v-sep"></div>
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA10-OURO')">DOEVIDA10-OURO &nbsp;📋
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TAB: MAPA ── -->
+        <div class="tab-panel" id="tab-map">
+            <div class="wrap">
+                <div class="map-wrap">
+                    <div class="chip">📍 Recife & Grande Recife</div>
+                    <h2 class="sec-title">Postos de Doação</h2>
+                    <p class="sec-sub" style="margin-bottom:28px;">Localize o hemocentro ou banco de sangue mais próximo
+                        de você.</p>
+
+                    <div class="map-container">
+                        <div id="map"></div>
+                    </div>
+                    <div class="map-legend">
+                        <div class="ml-item">
+                            <div class="ml-dot" style="background:var(--g600)"></div>Hemope / Hemocentro
+                        </div>
+                        <div class="ml-item">
+                            <div class="ml-dot" style="background:var(--red)"></div>Hospital com banco de sangue
+                        </div>
+                        <div class="ml-item">
+                            <div class="ml-dot" style="background:#3b82f6"></div>Sua localização
+                        </div>
+                    </div>
+
+                    <div class="map-cards">
+                        <div class="posto-card">
+                            <div class="pname">🩸 Hemope — Boa Vista</div>
+                            <div class="padd">R. Joaquim Nabuco, 185, Boa Vista, Recife</div>
+                            <div class="phrs">Seg–Sex: 7h–17h</div>
+                            <a href="https://maps.google.com/?q=Hemope+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                        <div class="posto-card">
+                            <div class="pname">🩸 Ihene — Boa Viagem</div>
+                            <div class="padd">Av. Domingos Ferreira, 4891, Boa Viagem</div>
+                            <div class="phrs">Seg–Sáb: 7h–18h</div>
+                            <a href="https://maps.google.com/?q=Ihene+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                        <div class="posto-card">
+                            <div class="pname">🏥 IMIP</div>
+                            <div class="padd">R. dos Coelhos, 300, Boa Vista, Recife</div>
+                            <div class="phrs">24 horas</div>
+                            <a href="https://maps.google.com/?q=IMIP+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                        <div class="posto-card">
+                            <div class="pname">🏥 Hospital das Clínicas UFPE</div>
+                            <div class="padd">Av. Prof. Moraes Rego, s/n, Cidade Universitária</div>
+                            <div class="phrs">Seg–Sex: 7h–16h</div>
+                            <a href="https://maps.google.com/?q=Hospital+Clinicas+UFPE+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                        <div class="posto-card">
+                            <div class="pname">🏥 HUOC — UPE</div>
+                            <div class="padd">Av. Agamenon Magalhães, s/n, Derby, Recife</div>
+                            <div class="phrs">Seg–Sex: 7h–17h</div>
+                            <a href="https://maps.google.com/?q=HUOC+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                        <div class="posto-card">
+                            <div class="pname">🏥 Real Hospital Português</div>
+                            <div class="padd">Av. Agamenon Magalhães, 4760, Paissandu</div>
+                            <div class="phrs">24 horas</div>
+                            <a href="https://maps.google.com/?q=Hospital+Portugues+Recife" target="_blank"
+                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TAB: REGRAS ── -->
+        <div class="tab-panel" id="tab-rules">
+            <div class="wrap">
+                <div class="rules-wrap">
+                    <div class="chip">📋 Diretrizes</div>
+                    <h2 class="sec-title">Quem pode doar?</h2>
+                    <p class="sec-sub" style="margin-bottom:36px;">Confira os critérios de aptidão para doação de sangue
+                        segundo o Ministério da Saúde.</p>
+
+                    <table class="rules-table">
+                        <thead>
+                            <tr>
+                                <th>Critério</th>
+                                <th>Homem</th>
+                                <th>Mulher</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Idade</td>
+                                <td>16–69 anos</td>
+                                <td>16–69 anos</td>
+                                <td class="ok">✔ Permitido</td>
+                            </tr>
+                            <tr>
+                                <td>Peso mínimo</td>
+                                <td>50 kg</td>
+                                <td>50 kg</td>
+                                <td class="ok">✔ Exigido</td>
+                            </tr>
+                            <tr>
+                                <td>Intervalo entre doações</td>
+                                <td>60 dias</td>
+                                <td>90 dias</td>
+                                <td class="cau">⚠ Variável</td>
+                            </tr>
+                            <tr>
+                                <td>Máximo por ano</td>
+                                <td>4 doações</td>
+                                <td>3 doações</td>
+                                <td class="cau">⚠ Limitado</td>
+                            </tr>
+                            <tr>
+                                <td>Gripe / Resfriado</td>
+                                <td colspan="2" style="text-align:center;">Aguardar 7 dias após melhora</td>
+                                <td class="no">✖ Temporário</td>
+                            </tr>
+                            <tr>
+                                <td>Tatuagem / Piercing</td>
+                                <td colspan="2" style="text-align:center;">Aguardar 12 meses</td>
+                                <td class="no">✖ Temporário</td>
+                            </tr>
+                            <tr>
+                                <td>Gravidez / Amamentação</td>
+                                <td colspan="2" style="text-align:center;">Não pode durante e 6 meses após parto</td>
+                                <td class="no">✖ Temporário</td>
+                            </tr>
+                            <tr>
+                                <td>Álcool (48h antes)</td>
+                                <td colspan="2" style="text-align:center;">Abstinência necessária</td>
+                                <td class="cau">⚠ Atenção</td>
+                            </tr>
+                            <tr>
+                                <td>Pressão arterial</td>
+                                <td colspan="2" style="text-align:center;">120–180 / 60–100 mmHg</td>
+                                <td class="ok">✔ Verificado</td>
+                            </tr>
+                            <tr>
+                                <td>Hemoglobina mínima</td>
+                                <td>13 g/dL</td>
+                                <td>12,5 g/dL</td>
+                                <td class="ok">✔ Verificado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="rule-card info">
+                        <div class="ri">ℹ️</div>
+                        <div class="rt">
+                            <h4>Intervalo entre doações: Homens</h4>
+                            <p>Homens devem aguardar no mínimo <strong>60 dias</strong> entre uma doação e outra (máximo
+                                4 doações por ano).</p>
+                        </div>
+                    </div>
+                    <div class="rule-card warn">
+                        <div class="ri">⚠️</div>
+                        <div class="rt">
+                            <h4>Intervalo entre doações: Mulheres</h4>
+                            <p>Mulheres devem aguardar no mínimo <strong>90 dias</strong> entre doações (máximo 3
+                                doações por ano).</p>
+                        </div>
+                    </div>
+                    <div class="rule-card alert">
+                        <div class="ri">🚫</div>
+                        <div class="rt">
+                            <h4>Impedimentos permanentes</h4>
+                            <p>Doenças como hepatite B/C após os 11 anos, HIV, HTLV, Doença de Chagas e uso de drogas
+                                injetáveis são impedimentos permanentes para doação.</p>
+                        </div>
+                    </div>
+                    <div class="rule-card info" style="margin-top:14px;">
+                        <div class="ri">🥗</div>
+                        <div class="rt">
+                            <h4>Antes de doar</h4>
+                            <p>Alimente-se bem (evite gorduras), beba bastante líquido, durma ao menos 6 horas e evite
+                                fumar 2 horas antes da doação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── TAB: CAMPANHAS ── -->
+        <div class="tab-panel" id="tab-campaigns">
+            <div class="wrap sec">
+                <div class="camp-hero">
+                    <h2>Campanhas & Parcerias</h2>
+                    <p>Junte-se a empresas, escolas e grupos que já fazem parte do movimento DoeVida. Vamos salvar mais
+                        vidas juntos.</p>
+                    <div class="camp-cta">
+                        <button class="btn btn-gold btn-lg" onclick="callPartner()">📞 Falar com parceiro</button>
+                        <button class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.5);color:white;"
+                            onclick="openModal('registerModal')">🩸 Quero ser doador</button>
+                    </div>
+                </div>
+
+                <div class="camp-grid">
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🏥</div>
+                        <div class="camp-body">
+                            <h4>Campanha Hospitalar</h4>
+                            <p>Parceria com hospitais públicos de Recife para captação de doadores em dias críticos de
+                                baixo estoque.</p>
+                        </div>
+                    </div>
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,var(--g50),var(--g100));">🏫
+                        </div>
+                        <div class="camp-body">
+                            <h4>DoeVida nas Escolas</h4>
+                            <p>Programa educativo para sensibilizar jovens entre 16–18 anos sobre a importância da
+                                doação de sangue.</p>
+                        </div>
+                    </div>
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🏢</div>
+                        <div class="camp-body">
+                            <h4>Empresa Doadora</h4>
+                            <p>Seu negócio pode patrocinar campanhas e ganhar visibilidade em toda nossa plataforma.
+                                Fale conosco.</p>
+                        </div>
+                    </div>
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💊</div>
+                        <div class="camp-body">
+                            <h4>Farmácias Parceiras</h4>
+                            <p>Mais de 15 farmácias em Recife aceitam os vouchers DoeVida. Quer ser parceira? Entre em
+                                contato.</p>
+                        </div>
+                    </div>
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">📻</div>
+                        <div class="camp-body">
+                            <h4>Campanha de Mídia</h4>
+                            <p>Ações em rádio, TV e redes sociais de Pernambuco para ampliar o número de doadores
+                                ativos.</p>
+                        </div>
+                    </div>
+                    <div class="camp-card">
+                        <div class="camp-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🌟</div>
+                        <div class="camp-body">
+                            <h4>Embaixadores DoeVida</h4>
+                            <p>Doadores Ouro viram embaixadores da plataforma, com benefícios exclusivos e visibilidade
+                                na comunidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-info">
+                        <h3>Fale com nossa equipe</h3>
+                        <p>Para parcerias corporativas, campanhas institucionais ou dúvidas sobre a plataforma, entre em
+                            contato diretamente.</p>
+                        <div class="contact-phone">
+                            <span>📱</span> (81) 99277-8821
+                        </div>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                            <a href="https://wa.me/5581992778821" target="_blank" class="btn btn-green">💬 WhatsApp</a>
+                            <a href="mailto:contato@doevida.com.br" class="btn btn-outline">✉️ E-mail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main><!-- /page-frame -->
+
+    <!-- ════════════════════════════════════════
+     MODALS
+════════════════════════════════════════ -->
+
+    <!-- REGISTER -->
+    <div class="glass-overlay" id="registerModal" onclick="closeOnBg(event,'registerModal')">
+        <div class="glass-card">
+            <button class="glass-x" onclick="closeModal('registerModal')">✕</button>
+            <div id="regFormWrap">
+                <div class="glass-logo">🩸 Doe<span class="drop">Vida</span></div>
+                <h2>Criar sua conta</h2>
+                <p class="sub">Cadastre-se e ganhe <strong style="color:var(--g600)">300 pontos</strong> de bônus
+                    instantaneamente.</p>
+
+                <div class="form-2col">
+                    <div class="form-group"><label class="form-label">Nome *</label><input class="form-input" id="rNome"
+                            placeholder="Maria" /></div>
+                    <div class="form-group"><label class="form-label">Sobrenome</label><input class="form-input"
+                            id="rSobre" placeholder="Silva" /></div>
+                </div>
+                <div class="form-group"><label class="form-label">E-mail *</label><input type="email" class="form-input"
+                        id="rEmail" placeholder="seu@email.com" /></div>
+                <div class="form-group"><label class="form-label">CPF</label><input class="form-input" id="rCpf"
+                        placeholder="000.000.000-00" oninput="maskCpf(this)" /></div>
+                <div class="form-2col">
+                    <div class="form-group"><label class="form-label">Nascimento *</label><input type="date"
+                            class="form-input" id="rNasc" /></div>
+                    <div class="form-group">
+                        <label class="form-label">Peso (kg) *</label>
+                        <input type="number" class="form-input" id="rPeso" placeholder="Ex: 70"
+                            oninput="checkPeso(this)" />
+                        <div class="weight-warn" id="pesoWarn">⚠️ Peso mínimo para doação: 50 kg</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo Sanguíneo</label>
+                    <div class="blood-select">
+                        <div class="bs-opt"><input type="radio" name="blood" id="bAp" value="A+"><label
+                                for="bAp">A+</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bAm" value="A−"><label
+                                for="bAm">A−</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bBp" value="B+"><label
+                                for="bBp">B+</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bBm" value="B−"><label
+                                for="bBm">B−</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bABp" value="AB+"><label
+                                for="bABp">AB+</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bABm" value="AB−"><label
+                                for="bABm">AB−</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bOp" value="O+"><label
+                                for="bOp">O+</label></div>
+                        <div class="bs-opt"><input type="radio" name="blood" id="bOm" value="O−"><label
+                                for="bOm">O−</label></div>
+                    </div>
+                </div>
+                <div class="form-group"><label class="form-label">Senha * (mín. 8 caracteres)</label><input
+                        type="password" class="form-input" id="rSenha" placeholder="••••••••" /></div>
+                <div class="form-group"><label class="form-label">Sexo</label>
+                    <select class="form-input" id="rSexo">
+                        <option value="">Selecione</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </div>
+                <button class="btn btn-green btn-lg btn-block" onclick="doRegister()">🎉 Criar conta & ganhar 300
+                    pts</button>
+                <div class="modal-switch">Já tem conta? <a onclick="swapModal('registerModal','loginModal')">Entrar</a>
+                </div>
+            </div>
+            <div class="reg-success" id="regSuccess">
+                <div class="success-anim">🎉</div>
+                <h2>Conta criada!</h2>
+                <p style="color:var(--gray5);margin:8px 0 4px;">Bem-vindo(a) à família DoeVida.</p>
+                <div class="bonus-tag">🏅 +300 pontos adicionados!</div>
+                <p style="font-size:.84rem;color:var(--gray4);margin-bottom:20px;">Seu saldo de pontos já está
+                    disponível na plataforma.</p>
+                <button class="btn btn-green btn-lg" onclick="closeModal('registerModal')">Ir para o feed 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="glass-overlay" id="loginModal" onclick="closeOnBg(event,'loginModal')">
+        <div class="glass-card">
+            <button class="glass-x" onclick="closeModal('loginModal')">✕</button>
+            <div class="glass-logo">🩸 Doe<span class="drop">Vida</span></div>
+            <h2>Bem-vindo de volta</h2>
+            <p class="sub">Entre na sua conta para continuar salvando vidas.</p>
+            <div class="form-group"><label class="form-label">E-mail</label><input type="email" class="form-input"
+                    id="lEmail" placeholder="seu@email.com" /></div>
+            <div class="form-group"><label class="form-label">Senha</label><input type="password" class="form-input"
+                    id="lSenha" placeholder="••••••••" /></div>
+            <button class="btn btn-green btn-lg btn-block" onclick="doLogin()">Entrar na conta</button>
+            <div class="modal-switch">Não tem conta? <a onclick="swapModal('loginModal','registerModal')">Criar
+                    agora</a></div>
+        </div>
+    </div>
+
+    <!-- CAMPAIGN REGISTER -->
+    <div class="glass-overlay" id="postModal" onclick="closeOnBg(event,'postModal')">
+        <div class="glass-card">
+            <button class="glass-x" onclick="closeModal('postModal')">✕</button>
+            <h2>Nova campanha</h2>
+            <p class="sub">Divulgue uma campanha institucional ou um pedido pessoal de doação.</p>
+
+            <div class="form-group">
+                <label class="form-label">Tipo de campanha</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button class="btn btn-green btn-sm post-type" data-type="institucional" onclick="selType(this)">🏥 Institucional</button>
+                    <button class="btn btn-ghost btn-sm post-type" data-type="pessoal" onclick="selType(this)">👨‍👩‍👧 Pessoal</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Título da campanha</label>
+                <input class="form-input" id="campTitulo" placeholder="Ex.: Doadores A+ para cirurgia de João">
+            </div>
+
+            <div class="form-2col">
+                <div class="form-group">
+                    <label class="form-label">Responsável</label>
+                    <input class="form-input" id="campResponsavel" placeholder="Família, hospital, empresa...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo sanguíneo</label>
+                    <select class="form-input" id="campBlood">
+                        <option value="">Selecione</option>
+                        <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                        <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                        <option>Todos</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-2col">
+                <div class="form-group">
+                    <label class="form-label">Data da cirurgia ou limite</label>
+                    <input type="date" class="form-input" id="campDataLimite">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Doadores desejados</label>
+                    <input type="number" min="1" class="form-input" id="campQtd" placeholder="Ex.: 5">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Local de doação</label>
+                <input class="form-input" id="campLocal" placeholder="Ex.: HEMOPE Recife">
+            </div>
+
+            <div class="form-2col">
+                <div class="form-group">
+                    <label class="form-label">Cidade</label>
+                    <input class="form-input" id="campCidade" placeholder="Ex.: Recife">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Bairro</label>
+                    <input class="form-input" id="campBairro" placeholder="Ex.: Derby">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Contato do responsável</label>
+                <input class="form-input" id="campContato" placeholder="Telefone, WhatsApp ou e-mail">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Descrição curta</label>
+                <textarea class="form-input" id="postTxt" rows="4"
+                    placeholder="Explique quem precisa, por que precisa e como a pessoa pode ajudar."
+                    style="resize:vertical;border-radius:16px;"></textarea>
+            </div>
+            <button class="btn btn-green btn-lg btn-block" onclick="submitPost()">Publicar campanha</button>
+        </div>
+    </div>
+
+    <!-- DONATION REGISTER -->
+    <div class="glass-overlay" id="donationModal" onclick="closeOnBg(event,'donationModal')">
+        <div class="glass-card">
+            <button class="glass-x" onclick="closeModal('donationModal')">✕</button>
+            <h2>Registrar doação</h2>
+            <p class="sub">Confirme sua doação e ganhe <strong style="color:var(--g600)">+100 pontos</strong>.</p>
+            <div class="form-group">
+                <label class="form-label">Posto de doação</label>
+                <select class="form-input" id="donaPosto">
+                    <option value="">Selecione o posto</option>
+                    <option>Hemope — Boa Vista</option>
+                    <option>Ihene — Boa Viagem</option>
+                    <option>IMIP</option>
+                    <option>Hospital das Clínicas UFPE</option>
+                    <option>HUOC — UPE</option>
+                    <option>Real Hospital Português</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Data da doação</label>
+                <input type="date" class="form-input" id="donaData" />
+            </div>
+            <button class="btn btn-red btn-lg btn-block" onclick="registerDonation()">🩸 Confirmar doação (+100
+                pts)</button>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast-box" id="toastBox"></div>
+
+    <!-- ════════ FOOTER ════════ -->
+    <footer>
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="flogo">Doe<span>Vida</span></div>
+                    <p>A plataforma que conecta doadores de sangue com recompensas reais em Recife e Pernambuco.</p>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="#">Como funciona</a></li>
+                        <li><a href="#">Recompensas</a></li>
+                        <li><a href="#">Mapa</a></li>
+                        <li><a href="#">Comunidade</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Postos</h4>
+                    <ul>
+                        <li><a href="#">Hemope</a></li>
+                        <li><a href="#">Ihene</a></li>
+                        <li><a href="#">IMIP</a></li>
+                        <li><a href="#">Hospital das Clínicas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="https://wa.me/5581992778821">📱 (81) 99277-8821</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="#">Termos de uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2024 DoeVida · Feito com ❤️ em Recife, PE.</span>
+                <span>Uma vida doada é uma vida salva 🩸</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script defer src="./js/state.js"></script>
+    <script defer src="./js/data/campaigns.js"></script>
+    <script defer src="./js/app.js"></script>
+</body>
+
+</html>
