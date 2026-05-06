@@ -996,7 +996,7 @@
         }
 
         .campaign-detail-main h3 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.35rem;
             margin: 0 0 10px;
         }
@@ -1878,7 +1878,7 @@
         }
 
         .posto-card .pname {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1rem;
             margin-bottom: 4px;
         }
@@ -2032,7 +2032,7 @@
         }
 
         .camp-hero h2 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 2.4rem;
             margin-bottom: 10px;
             position: relative;
@@ -2091,7 +2091,7 @@
         }
 
         .camp-body h4 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.05rem;
             margin-bottom: 6px;
         }
@@ -2119,7 +2119,7 @@
         }
 
         .contact-info h3 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.5rem;
             margin-bottom: 6px;
         }
@@ -2131,7 +2131,7 @@
         }
 
         .contact-phone {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--g600);
@@ -2209,7 +2209,7 @@
         }
 
         .glass-logo {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.45rem;
             font-weight: 700;
             color: var(--g800);
@@ -2224,7 +2224,7 @@
         }
 
         .glass-card h2 {
-            font-family: var(--font-title);
+            font-family: var(--font-body);
             font-size: 1.7rem;
             color: var(--dark);
             margin-bottom: 6px;

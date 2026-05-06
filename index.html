@@ -10,6 +10,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -131,25 +132,25 @@
                     <div class="grid-4">
                         <div class="step-card">
                             <div class="step-n">1</div>
-                            <div class="step-icon">📋</div>
+                            <div class="step-icon"><img src="cadastre-se.png" alt="Cadastro"></div>
                             <h3 style="font-size: 25px;">Cadastre-se</h3>
                             <p>Crie sua conta para acompanhar campanhas e participar da mobilização.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">2</div>
-                            <div class="step-icon">📍</div>
+                            <div class="step-icon"><img src="procura-campanha.png" alt="Procurar Campanha"></div>
                             <h3 style="font-size: 25px;">Encontre campanhas</h3>
                             <p>Veja campanhas próximas, urgentes ou compatíveis com seu contexto.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">3</div>
-                            <div class="step-icon">🩸</div>
+                            <div class="step-icon"><img src="divulgue.png" alt="Divulgar"></div>
                             <h3 style="font-size: 25px;">Divulgue para as pessoas certas</h3>
                             <p>Compartilhe campanhas com grupos, comunidades e pessoas que possam se interessar em ajudar.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">4</div>
-                            <div class="step-icon">🎁</div>
+                            <div class="step-icon"><img src="presente.png" alt="Pontos"></div>
                             <h3 style="font-size: 25px;">Use seus pontos</h3>
                             <p>Troque pontos de mobilização por benefícios oferecidos por parceiros.</p>
                         </div>
@@ -204,7 +205,7 @@
             <div class="wallet-wrap">
                 <div id="walletLoggedOut" style="text-align:center;padding:80px 0;">
                     <div style="font-size:4rem;margin-bottom:16px;">🔐</div>
-                    <h2 style="font-family:var(--font-title);font-size:1.8rem;margin-bottom:8px;">Acesso restrito</h2>
+                    <h2 style="font-family:var(--font-body);font-size:1.8rem;margin-bottom:8px;">Acesso restrito</h2>
                     <p style="color:var(--gray5);margin-bottom:24px;">Faça login para visualizar sua carteira de doador.
                     </p>
                     <button class="btn btn-green btn-lg" onclick="openModal('loginModal')">Entrar na conta</button>
@@ -336,7 +337,6 @@
         <div class="tab-panel" id="tab-map">
             <div class="wrap">
                 <div class="map-wrap">
-                    <div class="chip">📍 Recife & Grande Recife</div>
                     <h2 class="sec-title">Postos de Doação</h2>
                     <p class="sec-sub" style="margin-bottom:28px;">Localize o hemocentro ou banco de sangue mais próximo
                         de você.</p>
@@ -576,7 +576,7 @@
                     <div class="camp-card">
                         <div class="camp-img" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🌟</div>
                         <div class="camp-body">
-                            <h4>Mobilização com impacto</h4>
+                            <h4>Mobilização com Impacto</h4>
                             <p>Usuários com maior impacto ajudam campanhas a alcançar comunidades relevantes e acompanham
                                 os resultados pela plataforma.</p>
                         </div>
@@ -587,10 +587,9 @@
                     <div class="contact-icon">📞</div>
                     <div class="contact-info">
                         <h3>Fale com nossa equipe</h3>
-                        <p>Para parcerias corporativas, campanhas institucionais ou dúvidas sobre a plataforma, entre em
-                            contato diretamente.</p>
+                        <p>Para parcerias corporativas, campanhas institucionais ou dúvidas sobre a plataforma, entre em contato diretamente.</p>
                         <div class="contact-phone">
-                            <span>📱</span> (81) 99277-8821
+                            (81) 99277-8821
                         </div>
                         <div style="display:flex;gap:10px;flex-wrap:wrap;">
                             <a href="https://wa.me/5581992778821" target="_blank" class="btn btn-green">💬 WhatsApp</a>
@@ -612,7 +611,6 @@
         <div class="glass-card">
             <button class="glass-x" onclick="closeModal('registerModal')">✕</button>
             <div id="regFormWrap">
-                <div class="glass-logo">🩸 Doe<span class="drop">Vida</span></div>
                 <h2>Criar sua conta</h2>
                 <p class="sub">Cadastre-se para acompanhar campanhas e participar da mobilização.</p>
 
@@ -687,7 +685,6 @@
         <div class="glass-card">
             <button class="glass-x" onclick="closeModal('loginModal')">✕</button>
             <div class="glass-logo" style="display:flex; justify-content:center; align-items:center;">
-                <img src="doevida.png" alt="Logo DoeVida" style="height:80px;">
             </div>
             <h2>Bem-vindo de volta</h2>
             <p class="sub">Entre na sua conta para continuar salvando vidas.</p>
@@ -877,15 +874,15 @@
                 <div>
                     <h4>Contato</h4>
                     <ul>
-                        <li><a href="https://wa.me/5581992778821">📱 (81) 99277-8821</a></li>
+                        <li><a href="https://wa.me/5581992778821"> (81) 99277-8821</a></li>
                         <li><a href="#">Privacidade</a></li>
                         <li><a href="#">Termos de uso</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© 2024 DoeVida · Feito com ❤️ em Recife, PE.</span>
-                <span>Uma vida doada é uma vida salva 🩸</span>
+                <span>© 2024 DoeVida · Feito com 🤍 em Recife, PE.</span>
+                <span>Uma vida doada é uma vida salva</span>
             </div>
         </div>
     </footer>
