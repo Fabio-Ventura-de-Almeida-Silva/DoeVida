@@ -30,12 +30,12 @@ const state = window.DoeVidaState || {};
             const diasRestantes = Math.ceil((limite - hoje) / 86400000);
 
             if (diasRestantes < 3) {
-                return { nivel: 'urgente', label: '🔴 Urgente', dias: diasRestantes, peso: 1 };
+                return { nivel: 'urgente', label: 'Urgente', dias: diasRestantes, peso: 1 };
             }
             if (diasRestantes <= 10) {
-                return { nivel: 'medium', label: '🟡 Médio', dias: diasRestantes, peso: 2 };
+                return { nivel: 'medium', label: 'Médio', dias: diasRestantes, peso: 2 };
             }
-            return { nivel: 'low', label: '🟢 Baixa', dias: diasRestantes, peso: 3 };
+            return { nivel: 'low', label: 'Baixa', dias: diasRestantes, peso: 3 };
         }
 
         function textoPrazo(dias) {
@@ -47,7 +47,7 @@ const state = window.DoeVidaState || {};
 
         function statusVerificacao(c) {
             if (c.tipo === 'institucional' || c.verificada) return 'Verificada';
-            return 'Pendente de verificação';
+            return 'Pendente';
         }
 
         function renderFeed() {

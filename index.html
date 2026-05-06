@@ -48,9 +48,9 @@
         <nav class="tabs-nav" id="tabsNav">
             <button class="tab-btn active" data-tab="home"> <span class="tab-icon"></span> Início</button>
             <button class="tab-btn" data-tab="feed"> <span class="tab-icon"></span> Comunidade</button>
-            <button class="tab-btn" data-tab="wallet"> <span class="tab-icon"></span> Carteira</button>
             <button class="tab-btn" data-tab="points"> <span class="tab-icon"></span> Pontos</button>
             <button class="tab-btn" data-tab="map"> <span class="tab-icon"></span> Mapa</button>
+            <button class="tab-btn" data-tab="wallet"> <span class="tab-icon"></span> Carteira</button>
             <button class="tab-btn" data-tab="rules"> <span class="tab-icon"></span> Orientações</button>
             <button class="tab-btn" data-tab="campaigns"><span class="tab-icon"></span> Campanhas</button>
         </nav>
@@ -241,9 +241,9 @@
                                 </div>
                             </div>
                             <div class="wallet-divider"></div>
-                            <button class="btn btn-green btn-sm" onclick="toggleWalletEdit()">✏️ Editar perfil</button>
+                            <button class="btn btn-green btn-sm" onclick="toggleWalletEdit()">Editar perfil</button>
                             <button class="btn btn-green btn-sm" style="margin-left:8px;"
-                                onclick="openModal('donationModal')">🩸 Registrar doação</button>
+                                onclick="openModal('donationModal')">Registrar doação</button>
                             <div class="wallet-edit-form" id="walletEditForm" style="margin-top:20px;"></div>
                         </div>
                     </div>
@@ -255,7 +255,7 @@
         <div class="tab-panel" id="tab-points">
             <div class="wrap">
                 <div class="points-wrap">
-                    <div class="chip">Mobilização qualificada</div>
+
                     <h2 class="sec-title">Pontos de Mobilização</h2>
                     <p class="sec-sub" style="margin-bottom:40px;">Ganhe pontos ao ajudar campanhas de doação a chegarem
                         às pessoas certas. Os pontos reconhecem a efetividade da divulgação, não a doação de sangue.</p>
@@ -266,17 +266,17 @@
 
                     <div class="pts-earn-grid">
                         <div class="pts-earn-card">
-                            <div class="plbl">Divulgue campanhas</div>
+                            <div class="chip">Divulgue campanhas</div>
                             <p class="pts-card-desc">Compartilhe campanhas com pessoas, grupos e comunidades que possam
                                 ter real interesse em ajudar.</p>
                         </div>
                         <div class="pts-earn-card">
-                            <div class="plbl">Gere alcance relevante</div>
+                            <div class="chip">Gere alcance relevante</div>
                             <p class="pts-card-desc">A plataforma valoriza divulgações que chegam a pessoas compatíveis
                                 com a necessidade, localização e contexto da campanha.</p>
                         </div>
                         <div class="pts-earn-card">
-                            <div class="plbl">Mobilize com qualidade</div>
+                            <div class="chip">Mobilize com qualidade</div>
                             <p class="pts-card-desc">O reconhecimento considera sinais reais de interesse, evitando que a
                                 pontuação dependa apenas de acessos superficiais.</p>
                         </div>
@@ -362,161 +362,242 @@
                             <div class="padd">R. Joaquim Nabuco, 185, Boa Vista, Recife</div>
                             <div class="phrs">Seg–Sex: 7h–17h</div>
                             <a href="https://maps.google.com/?q=Hemope+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                         <div class="posto-card">
                             <div class="pname">🩸 Ihene — Boa Viagem</div>
                             <div class="padd">Av. Domingos Ferreira, 4891, Boa Viagem</div>
                             <div class="phrs">Seg–Sáb: 7h–18h</div>
                             <a href="https://maps.google.com/?q=Ihene+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                         <div class="posto-card">
                             <div class="pname">🏥 IMIP</div>
                             <div class="padd">R. dos Coelhos, 300, Boa Vista, Recife</div>
                             <div class="phrs">24 horas</div>
                             <a href="https://maps.google.com/?q=IMIP+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                         <div class="posto-card">
                             <div class="pname">🏥 Hospital das Clínicas UFPE</div>
                             <div class="padd">Av. Prof. Moraes Rego, s/n, Cidade Universitária</div>
                             <div class="phrs">Seg–Sex: 7h–16h</div>
                             <a href="https://maps.google.com/?q=Hospital+Clinicas+UFPE+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                         <div class="posto-card">
                             <div class="pname">🏥 HUOC — UPE</div>
                             <div class="padd">Av. Agamenon Magalhães, s/n, Derby, Recife</div>
                             <div class="phrs">Seg–Sex: 7h–17h</div>
                             <a href="https://maps.google.com/?q=HUOC+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                         <div class="posto-card">
                             <div class="pname">🏥 Real Hospital Português</div>
                             <div class="padd">Av. Agamenon Magalhães, 4760, Paissandu</div>
                             <div class="phrs">24 horas</div>
                             <a href="https://maps.google.com/?q=Hospital+Portugues+Recife" target="_blank"
-                                class="btn btn-green btn-sm">🗺️ Ver rota no GPS</a>
+                                class="btn btn-green btn-sm">Ver rota no GPS</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ── TAB: REGRAS ── -->
         <div class="tab-panel" id="tab-rules">
-            <div class="wrap">
-                <div class="rules-wrap">
-                    <div class="chip">📋 Diretrizes</div>
-                    <h2 class="sec-title">Quem pode doar?</h2>
-                    <p class="sec-sub" style="margin-bottom:36px;">Confira os critérios de aptidão para doação de sangue
-                        segundo o Ministério da Saúde.</p>
-
-                    <table class="rules-table">
+    
+            <div class="rules-page">
+    
+                <!-- ── Cabeçalho ── -->
+                <header class="rules-header">
+                    <h1 class="rules-page-title">Quem pode doar sangue?</h1>
+                    <p class="rules-page-sub">
+                    Confira os critérios de aptidão estabelecidos pelo
+                    <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                    e as informações de compatibilidade por tipo sanguíneo.
+                    </p>
+                </header>
+    
+                <!-- ── Subnav ── -->
+                <nav class="rules-subnav" role="tablist" aria-label="Seções de orientações">
+                    <button class="snav-btn active" role="tab" aria-selected="true" data-target="sec-criteria">
+                    <i class="ti ti-clipboard-check" aria-hidden="true"></i> Critérios de doação
+                    </button>
+                    <button class="snav-btn" role="tab" aria-selected="false" data-target="sec-compat">
+                    <i class="ti ti-droplet-half-2" aria-hidden="true"></i> Compatibilidade sanguínea
+                    </button>
+                </nav>
+    
+                <!-- ════════════════════════════════
+                    SEÇÃO 1 — CRITÉRIOS
+                ════════════════════════════════ -->
+                <section class="rules-sec visible" id="sec-criteria">
+    
+                    <!-- Requisitos gerais -->
+                    <div class="rule-block">
+                    <div class="rule-icon-wrap icon-neutral">
+                        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-3"/><path d="M9 12h6M12 9v6"/></svg>
+                    </div>
+                    <div class="rule-body">
+                        <h3 class="rule-title">Requisitos gerais</h3>
+                        <p class="rule-lead">
+                        O <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                        segue as diretrizes nacionais do Ministério da Saúde para garantir a segurança de quem doa e de quem recebe.
+                        </p>
+                        <ul class="crit-list">
+                        <li><b>Idade</b> Entre 16 e 69 anos. Menores de 18 anos precisam de autorização dos responsáveis.</li>
+                        <li><b>Peso</b> Mínimo de 50 kg.</li>
+                        <li><b>Saúde geral</b> Sentir-se bem no dia da doação, sem sintomas gripais, febre ou indisposição. Estar bem alimentado, evitando gorduras nas 3 horas anteriores.</li>
+                        <li><b>Documento</b> Apresentar documento oficial com foto (RG, CNH ou passaporte).</li>
+                        </ul>
+                    </div>
+                    </div>
+    
+                    <!-- Intervalos entre doações -->
+                    <div class="rule-block">
+                    <div class="rule-icon-wrap icon-neutral">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="rule-body">
+                        <h3 class="rule-title">Intervalos entre doações</h3>
+                        <p class="rule-lead">
+                        O corpo precisa de tempo para repor os componentes doados. O
+                        <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                        estabelece os seguintes intervalos mínimos obrigatórios:
+                        </p>
+                        <div class="interval-grid">
+                        <div class="int-card">
+                            <span class="int-value">60<span class="int-unit">dias</span></span>
+                            <span class="int-label">Homens<br><small style="color:var(--gray4)">máx. 4× por ano</small></span>
+                        </div>
+                        <div class="int-card">
+                            <span class="int-value">90<span class="int-unit">dias</span></span>
+                            <span class="int-label">Mulheres<br><small style="color:var(--gray4)">máx. 3× por ano</small></span>
+                        </div>
+                        <div class="int-card int-card--wide">
+                            <span class="int-value">2<span class="int-unit">anos</span></span>
+                            <span class="int-label">Após malária</span>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+    
+                    <!-- Impedimentos temporários -->
+                    <div class="rule-block">
+                    <div class="rule-icon-wrap icon-warn">
+                        <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                    <div class="rule-body">
+                        <h3 class="rule-title">Impedimentos temporários</h3>
+                        <p class="rule-lead">
+                        Informe sempre a equipe do
+                        <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                        sobre seu histórico recente. As situações abaixo suspendem temporariamente a doação:
+                        </p>
+                        <ul class="crit-list">
+                        <li><b>Tatuagem / piercing</b> Aguardar 12 meses após o procedimento.</li>
+                        <li><b>Cirurgia de pequeno porte</b> Aguardar 6 meses.</li>
+                        <li><b>Cirurgia de grande porte</b> Aguardar 12 meses.</li>
+                        <li><b>Gripe ou resfriado</b> Aguardar 7 dias após a recuperação completa.</li>
+                        <li><b>Vacinas atenuadas</b> Aguardar 4 semanas (febre amarela, varicela).</li>
+                        <li><b>Vacinas inativadas</b> Aguardar 48 horas (influenza, hepatite B).</li>
+                        <li><b>Gravidez</b> Aguardar 90 dias após parto normal, 180 dias após cesariana.</li>
+                        <li><b>Amamentação</b> Aguardar até 12 meses após o fim da amamentação.</li>
+                        <li><b>Uso de antibióticos</b> Aguardar 7 a 14 dias após encerrar o tratamento.</li>
+                        <li><b>Endoscopia / colonoscopia</b> Aguardar 6 meses.</li>
+                        </ul>
+                    </div>
+                    </div>
+    
+                    <!-- Impedimentos permanentes -->
+                    <div class="rule-block">
+                    <div class="rule-icon-wrap icon-danger">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                    </div>
+                    <div class="rule-body">
+                        <h3 class="rule-title">Impedimentos permanentes</h3>
+                        <p class="rule-lead">
+                        Certas condições impedem a doação em caráter definitivo. Toda triagem é sigilosa e realizada por profissionais do
+                        <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>:
+                        </p>
+                        <ul class="crit-list">
+                        <li>Hepatite B ou C após os 11 anos de idade</li>
+                        <li>HIV / AIDS ou parceiro com diagnóstico positivo</li>
+                        <li>Doença de Chagas</li>
+                        <li>Câncer, exceto alguns tipos de neoplasias benignas</li>
+                        <li>Doenças cardiovasculares graves</li>
+                        <li>Diabetes dependente de insulina</li>
+                        <li>Uso de drogas injetáveis</li>
+                        </ul>
+                    </div>
+                    </div>
+    
+                    <!-- Callout final -->
+                    <div class="rules-callout">
+                    Em dúvida sobre algum critério? Entre em contato com o
+                    <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                    ou compareça pessoalmente — a equipe de triagem está preparada para orientar você com respeito e sigilo.
+                    </div>
+    
+                </section><!-- /sec-criteria -->
+    
+                <!-- ════════════════════════════════
+                    SEÇÃO 2 — COMPATIBILIDADE
+                ════════════════════════════════ -->
+                <section class="rules-sec" id="sec-compat">
+    
+                    <p class="compat-intro">
+                    Conhecer seu tipo sanguíneo ajuda a entender quem você pode salvar e de quem pode receber sangue.
+                    O <a class="hemope-link" href="https://www.hemope.pe.gov.br/" target="_blank" rel="noopener">HEMOPE</a>
+                    mantém estoque de todos os tipos — alguns são mais raros e frequentemente em falta.
+                    Selecione um tipo abaixo para ver a compatibilidade completa.
+                    </p>
+    
+                    <!-- Seletor -->
+                    <div class="bt-selector" role="group" aria-label="Selecione o tipo sanguíneo">
+                    <button class="bt-btn active" data-type="A+">A+</button>
+                    <button class="bt-btn" data-type="A-">A−</button>
+                    <button class="bt-btn" data-type="B+">B+</button>
+                    <button class="bt-btn" data-type="B-">B−</button>
+                    <button class="bt-btn" data-type="AB+">AB+</button>
+                    <button class="bt-btn" data-type="AB-">AB−</button>
+                    <button class="bt-btn" data-type="O+">O+</button>
+                    <button class="bt-btn" data-type="O-">O−</button>
+                    </div>
+    
+                    <!-- Resultado dinâmico -->
+                    <div class="bt-result" id="btResult" aria-live="polite"></div>
+    
+                    <!-- Tabela resumo -->
+                    <p class="bt-summary-title">Visão geral de compatibilidade</p>
+                    <div class="bt-scroll">
+                    <table class="bt-table">
                         <thead>
-                            <tr>
-                                <th>Critério</th>
-                                <th>Homem</th>
-                                <th>Mulher</th>
-                                <th>Status</th>
-                            </tr>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Doa para</th>
+                            <th>Recebe de</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Idade</td>
-                                <td>16–69 anos</td>
-                                <td>16–69 anos</td>
-                                <td class="ok">✔ Permitido</td>
-                            </tr>
-                            <tr>
-                                <td>Peso mínimo</td>
-                                <td>50 kg</td>
-                                <td>50 kg</td>
-                                <td class="ok">✔ Exigido</td>
-                            </tr>
-                            <tr>
-                                <td>Intervalo entre doações</td>
-                                <td>60 dias</td>
-                                <td>90 dias</td>
-                                <td class="cau">⚠ Variável</td>
-                            </tr>
-                            <tr>
-                                <td>Máximo por ano</td>
-                                <td>4 doações</td>
-                                <td>3 doações</td>
-                                <td class="cau">⚠ Limitado</td>
-                            </tr>
-                            <tr>
-                                <td>Gripe / Resfriado</td>
-                                <td colspan="2" style="text-align:center;">Aguardar 7 dias após melhora</td>
-                                <td class="no">✖ Temporário</td>
-                            </tr>
-                            <tr>
-                                <td>Tatuagem / Piercing</td>
-                                <td colspan="2" style="text-align:center;">Aguardar 12 meses</td>
-                                <td class="no">✖ Temporário</td>
-                            </tr>
-                            <tr>
-                                <td>Gravidez / Amamentação</td>
-                                <td colspan="2" style="text-align:center;">Não pode durante e 6 meses após parto</td>
-                                <td class="no">✖ Temporário</td>
-                            </tr>
-                            <tr>
-                                <td>Álcool (48h antes)</td>
-                                <td colspan="2" style="text-align:center;">Abstinência necessária</td>
-                                <td class="cau">⚠ Atenção</td>
-                            </tr>
-                            <tr>
-                                <td>Pressão arterial</td>
-                                <td colspan="2" style="text-align:center;">120–180 / 60–100 mmHg</td>
-                                <td class="ok">✔ Verificado</td>
-                            </tr>
-                            <tr>
-                                <td>Hemoglobina mínima</td>
-                                <td>13 g/dL</td>
-                                <td>12,5 g/dL</td>
-                                <td class="ok">✔ Verificado</td>
-                            </tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">A+</span></td><td>A+, AB+</td><td>A+, A−, O+, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">A−</span></td><td>A+, A−, AB+, AB−</td><td>A−, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">B+</span></td><td>B+, AB+</td><td>B+, B−, O+, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">B−</span></td><td>B+, B−, AB+, AB−</td><td>B−, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge special">AB+</span></td><td>AB+</td><td>Todos os tipos</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">AB−</span></td><td>AB+, AB−</td><td>A−, B−, AB−, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge">O+</span></td><td>A+, B+, AB+, O+</td><td>O+, O−</td></tr>
+                        <tr><td class="bt-type-cell"><span class="bt-badge special">O−</span></td><td>Todos os tipos</td><td>O−</td></tr>
                         </tbody>
                     </table>
+                    </div>
+    
+                </section><!-- /sec-compat -->
+    
+            </div><!-- /rules-page -->
+</div>
 
-                    <div class="rule-card info">
-                        <div class="ri">ℹ️</div>
-                        <div class="rt">
-                            <h4>Intervalo entre doações: Homens</h4>
-                            <p>Homens devem aguardar no mínimo <strong>60 dias</strong> entre uma doação e outra (máximo
-                                4 doações por ano).</p>
-                        </div>
-                    </div>
-                    <div class="rule-card warn">
-                        <div class="ri">⚠️</div>
-                        <div class="rt">
-                            <h4>Intervalo entre doações: Mulheres</h4>
-                            <p>Mulheres devem aguardar no mínimo <strong>90 dias</strong> entre doações (máximo 3
-                                doações por ano).</p>
-                        </div>
-                    </div>
-                    <div class="rule-card alert">
-                        <div class="ri">🚫</div>
-                        <div class="rt">
-                            <h4>Impedimentos permanentes</h4>
-                            <p>Doenças como hepatite B/C após os 11 anos, HIV, HTLV, Doença de Chagas e uso de drogas
-                                injetáveis são impedimentos permanentes para doação.</p>
-                        </div>
-                    </div>
-                    <div class="rule-card info" style="margin-top:14px;">
-                        <div class="ri">🥗</div>
-                        <div class="rt">
-                            <h4>Antes de doar</h4>
-                            <p>Alimente-se bem (evite gorduras), beba bastante líquido, durma ao menos 6 horas e evite
-                                fumar 2 horas antes da doação.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- ── TAB: CAMPANHAS ── -->
         <div class="tab-panel" id="tab-campaigns">
             <div class="wrap sec">
@@ -525,9 +606,9 @@
                     <p>Junte-se a empresas, escolas e grupos que já fazem parte do movimento DoeVida. Vamos salvar mais
                         vidas juntos.</p>
                     <div class="camp-cta">
-                        <button class="btn btn-gold btn-lg" onclick="callPartner()">📞 Falar com parceiro</button>
+                        <button class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.5);color:white;" onclick="callPartner()">Falar com parceiro</button>
                         <button class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.5);color:white;"
-                            onclick="openModal('registerModal')">🩸 Quero ser doador</button>
+                            onclick="openModal('registerModal')">Quero ser doador</button>
                     </div>
                 </div>
 
@@ -592,8 +673,8 @@
                             (81) 99277-8821
                         </div>
                         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                            <a href="https://wa.me/5581992778821" target="_blank" class="btn btn-green">💬 WhatsApp</a>
-                            <a href="mailto:contato@doevida.com.br" class="btn btn-outline">✉️ E-mail</a>
+                            <a href="https://wa.me/5581992778821" target="_blank" class="btn btn-green">WhatsApp</a>
+                            <a href="mailto:contato@doevida.com.br" class="btn btn-outline">E-mail</a>
                         </div>
                     </div>
                 </div>
@@ -895,6 +976,69 @@
     <script defer src="./js/state.js"></script>
     <script defer src="./js/data/campaigns.js"></script>
     <script defer src="./js/app.js"></script>
+    <script>
+        const bloodData={
+        'A+': {dona:['A+','AB+'],          recv:['A+','A−','O+','O−']},
+        'A-': {dona:['A+','A−','AB+','AB−'], recv:['A−','O−']},
+        'B+': {dona:['B+','AB+'],          recv:['B+','B−','O+','O−']},
+        'B-': {dona:['B+','B−','AB+','AB−'], recv:['B−','O−']},
+        'AB+':{dona:['AB+'],               recv:'TODOS'},
+        'AB-':{dona:['AB+','AB−'],         recv:['A−','B−','AB−','O−']},
+        'O+': {dona:['A+','B+','AB+','O+'], recv:['O+','O−']},
+        'O-': {dona:'TODOS',               recv:['O−']},
+        };
+
+        function tags(arr,cls){
+        if(arr==='TODOS') return `<span class="bt-tag all">Todos os tipos</span>`;
+        return arr.map(t=>`<span class="bt-tag ${cls}">${t}</span>`).join('');
+        }
+
+        function renderResult(type){
+        const d=bloodData[type]; if(!d) return;
+        const el=document.getElementById('btResult');
+        el.innerHTML=`
+            <p class="bt-result-heading">${type}</p>
+            <p class="bt-result-sub">Compatibilidade completa para doação e recepção de sangue</p>
+            <div class="bt-groups">
+            <div>
+                <p class="bt-group-label">
+                <svg viewBox="0 0 24 24" style="color:#166534"><path d="M12 22V2M5 12l7-10 7 10"/></svg>
+                Doa para
+                </p>
+                <div class="bt-tags">${tags(d.dona,'dona')}</div>
+            </div>
+            <div>
+                <p class="bt-group-label">
+                <svg viewBox="0 0 24 24" style="color:#1e40af"><path d="M12 2v20M5 12l7 10 7-10"/></svg>
+                Recebe de
+                </p>
+                <div class="bt-tags">${tags(d.recv,'recv')}</div>
+            </div>
+            </div>`;
+        }
+
+        /* Subnav */
+        document.querySelectorAll('.snav-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.snav-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false')});
+            document.querySelectorAll('.rules-sec').forEach(s=>s.classList.remove('visible'));
+            btn.classList.add('active');btn.setAttribute('aria-selected','true');
+            document.getElementById(btn.dataset.target).classList.add('visible');
+        });
+        });
+
+        /* Seletor de sangue */
+        document.querySelectorAll('.bt-btn').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+            document.querySelectorAll('.bt-btn').forEach(b=>b.classList.remove('active'));
+            btn.classList.add('active');
+            renderResult(btn.dataset.type);
+        });
+        });
+
+        renderResult('A+');
+        </script>
+
 </body>
 
 </html>
