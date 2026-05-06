@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DoeVida — Doe Sangue, Viva com Recompensas</title>
+    <title>DoeVida — Doe Sangue</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,7 +16,9 @@
 
     <!-- ════════ TOP BAR ════════ -->
     <header class="topbar">
+
         <img src="doevida.png" alt="Logo DoeVida" class="logo-img">
+
         <div class="topbar-spacer"></div>
 
         <!-- Points badge (shown after login) -->
@@ -64,18 +66,16 @@
                 <div class="wrap">
                     <div class="hero-inner">
                         <div>
-                            <div class="hero-pill">🩸 Recife doa, Recife vive</div>
                             <h1 class="hero-h1">
-                                Doe <span class="em-red">Sangue.</span><br>
-                                Ganhe <span class="em-green">Recompensas.</span><br>
-                                Salve Vidas.
+                                Doe <span class="em-red">Sangue</span><br>
+                                <span class="em-red">Salve</span> Vidas
                             </h1>
                             <p class="hero-lead">A primeira plataforma de doação de sangue com gamificação real do
                                 Nordeste. Cada doação vira pontos, cada ponto vira desconto em farmácias parceiras de
                                 Recife.</p>
                             <div class="hero-btns">
-                                <button class="btn btn-green btn-lg" onclick="openModal('registerModal')">🩸 Começar a
-                                    Doar</button>
+                                <button class="btn btn-green btn-lg" onclick="openModal('registerModal')">Começar a
+                                    doar</button>
                                 <button class="btn btn-outline btn-lg" onclick="switchTab('rules')">Ver
                                     requisitos</button>
                             </div>
@@ -97,7 +97,7 @@
                         <div class="hero-visual">
                             <div class="hero-card">
                                 <span class="drop-big">🩸</span>
-                                <h3 class="hero-card-h">Seja um Herói</h3>
+                                <h3 class="hero-card-h">Seja um Herói!</h3>
                                 <p class="hero-card-p">Uma doação salva até 4 vidas</p>
                                 <div class="blood-chips">
                                     <span class="bchip">A+</span><span class="bchip">A−</span>
@@ -106,14 +106,12 @@
                                 </div>
                             </div>
                             <div class="float-tag ft-1">
-                                <span class="ft-icon">🏅</span>
                                 <div>
                                     <div class="ft-v">+300 pts</div>
                                     <div class="ft-l">bônus de cadastro</div>
                                 </div>
                             </div>
                             <div class="float-tag ft-2">
-                                <span class="ft-icon">✅</span>
                                 <div>
                                     <div style="font-weight:700;font-size:.88rem;">Doação confirmada</div>
                                     <div class="ft-l">Hemope · há 5min</div>
@@ -135,25 +133,25 @@
                         <div class="step-card">
                             <div class="step-n">1</div>
                             <div class="step-icon">📋</div>
-                            <h3 style="font-size: 25px;"">Cadastre-se</h3>
+                            <h3>Cadastre-se</h3>
                             <p>Crie sua conta e ganhe <strong>300 pontos</strong> de bônus imediatamente.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">2</div>
                             <div class="step-icon">📍</div>
-                            <h3 style="font-size: 25px;">Localize um posto</h3>
+                            <h3>Localize um posto</h3>
                             <p>Use o mapa para encontrar o Hemope, Ihene ou hospital mais próximo.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">3</div>
                             <div class="step-icon">🩸</div>
-                            <h3 style="font-size: 25px;">Doe sangue</h3>
+                            <h3>Doe sangue</h3>
                             <p>Realize a doação e confirme na plataforma. Vale <strong>+100 pontos</strong>.</p>
                         </div>
                         <div class="step-card">
                             <div class="step-n">4</div>
                             <div class="step-icon">🎁</div>
-                            <h3 style="font-size: 25px;">Resgate descontos</h3>
+                            <h3>Resgate descontos</h3>
                             <p>Troque seus pontos por vouchers de 5%, 7% e 10% em farmácias.</p>
                         </div>
                     </div>
@@ -181,7 +179,7 @@
                     </div>
                     <div class="feed-aside">
                         <div class="aside-card" id="ptsCard" style="display:none;">
-                            <h3>🏅 Seus Pontos</h3>
+                            <h3>Seus pontos</h3>
                             <div class="pts-display">
                                 <div class="medal">🥇</div>
                                 <div class="big" id="sidebarPts">300</div>
@@ -195,58 +193,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-green btn-block" style="margin-top:12px;"
-                                onclick="switchTab('points')">🎟️ Ver recompensas</button>
-                        </div>
-                        <div class="aside-card">
-                            <h3>🏆 Top Doadores</h3>
-                            <ul class="lb-list">
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥇</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#2D6A4F,#52B788)">Ma
-                                    </div>
-                                    <div class="lb-name">Maria S.</div>
-                                    <div class="lb-pts">2.450</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥈</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#374151,#6b7280)">Jo
-                                    </div>
-                                    <div class="lb-name">João F.</div>
-                                    <div class="lb-pts">1.980</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">🥉</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#92400e,#d97706)">An
-                                    </div>
-                                    <div class="lb-name">Ana R.</div>
-                                    <div class="lb-pts">1.720</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">4</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#5B21B6,#7C3AED)">Ca
-                                    </div>
-                                    <div class="lb-name">Carlos M.</div>
-                                    <div class="lb-pts">1.400</div>
-                                </li>
-                                <li class="lb-item">
-                                    <div class="lb-pos">5</div>
-                                    <div class="avatar-sm" style="background:linear-gradient(135deg,#0369A1,#0284C7)">Bi
-                                    </div>
-                                    <div class="lb-name">Bianca P.</div>
-                                    <div class="lb-pts">1.150</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="aside-card">
-                            <h3>🩸 Urgência Hoje — Hemope</h3>
-                            <div class="blood-urgent">
-                                <div class="bu-chip urgent">O−</div>
-                                <div class="bu-chip urgent">AB−</div>
-                                <div class="bu-chip">A−</div>
-                                <div class="bu-chip">B−</div>
-                                <div class="bu-chip">O+</div>
-                                <div class="bu-chip">A+</div>
-                            </div>
+                                onclick="switchTab('points')">Ver recompensas</button>
                         </div>
                     </div>
                 </div>
@@ -308,7 +255,6 @@
         <div class="tab-panel" id="tab-points">
             <div class="wrap">
                 <div class="points-wrap">
-                    <div class="chip">🏅 Gamificação</div>
                     <h2 class="sec-title">Pontos & Recompensas</h2>
                     <p class="sec-sub" style="margin-bottom:40px;">Doe mais, ganhe mais. Cada ação vale pontos reais.
                     </p>
@@ -336,7 +282,7 @@
                         </div>
                     </div>
 
-                    <h3 class="vouchers-title">Seus Vouchers de Desconto</h3>
+                    <h3 class="vouchers-title">Seus vouchers de desconto</h3>
                     <p class="vouchers-sub">Troque seus pontos por descontos reais em farmácias parceiras de Recife e
                         Grande Recife.</p>
 
@@ -350,9 +296,9 @@
                             <div class="v-body">
                                 <h4>Voucher Bronze</h4>
                                 <p>Válido em toda a rede de farmácias parceiras DoeVida em Recife e Grande Recife.</p>
-                                <div class="v-req">⭐ Requer 300 pts</div>
+                                <div class="v-req">Requer 300 pts</div>
                                 <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA5-PE')">DOEVIDA5-PE &nbsp;📋</div>
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA5-PE')">DOEVIDA5-BRONZE</div>
                             </div>
                         </div>
                         <div class="voucher">
@@ -364,9 +310,9 @@
                             <div class="v-body">
                                 <h4>Voucher Prata</h4>
                                 <p>Para doadores frequentes. Válido por 30 dias após resgate em farmácias parceiras.</p>
-                                <div class="v-req">⭐ Requer 700 pts</div>
+                                <div class="v-req">Requer 700 pts</div>
                                 <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA7-PRATA')">DOEVIDA7-PRATA &nbsp;📋
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA7-PRATA')">DOEVIDA7-PRATA
                                 </div>
                             </div>
                         </div>
@@ -379,9 +325,9 @@
                             <div class="v-body">
                                 <h4>Voucher Ouro</h4>
                                 <p>Para os maiores heróis. Desconto máximo em toda a rede DoeVida de Recife.</p>
-                                <div class="v-req">⭐ Requer 1.500 pts</div>
+                                <div class="v-req">Requer 1.500 pts</div>
                                 <div class="v-sep"></div>
-                                <div class="v-code" onclick="copyCode(this,'DOEVIDA10-OURO')">DOEVIDA10-OURO &nbsp;📋
+                                <div class="v-code" onclick="copyCode(this,'DOEVIDA10-OURO')">DOEVIDA10-OURO
                                 </div>
                             </div>
                         </div>
